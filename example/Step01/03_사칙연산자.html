@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사칙연산자</title>
+    <script>
+        // + - * / %
+        // 변수 두개 선언, 임의의 정수값으로 초기화
+        // 두 변수의 사칙 연산값을 출력
+        let n1 = 10;
+        var n2 = 20;
+        document.write(n1 + n2, "<br>");
+        document.write(n1 - n2, "<br>");
+        document.write(n1 * n2, "<br>");
+        document.write(n1 / n2, "<br>");
+        document.write(n1 % n2, "<br>");
+
+        // ---------------------------------------------
+
+        // 문자열 덧셈
+        let str = '안녕하세요';
+        document.write(str + n1 + n2, '<br>');
+
+        str = '1000';
+        document.write(str + n1 + n2, '<br>');
+        document.write(str * 2, '<br>');
+
+        // -----------------------------------------------------
+
+        // prompt() 함수를 사용하여 사용자에게 숫자를 입력하도록 요청
+        let msg = Number(prompt('숫자하나 입력하세요', 0));// prompt
+        document.write(msg, '<br>')
+
+        // 입력 받은 숫자에 3을 곱해서 출력
+        document.write(msg * 3, '<br>')
+        // 입력 받은 숫자에 100을 더해서 출력
+        document.write(msg + 100, '<br>')
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
