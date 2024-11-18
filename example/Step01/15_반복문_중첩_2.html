@@ -1,17 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>반복문</title>
     <style>
-     
+        table {
+            border-collapse: collapse;
+            /* 테이블 경계선 겹침 제거 */
+        }
+
+        td {
+            width: 100px;
+            /* 각 셀의 너비 */
+            height: 100px;
+            /* 각 셀의 높이 */
+            vertical-align: middle;
+            /* 텍스트를 셀의 중앙에 배치 */
+            border: 1px solid black;
+            /* 셀의 테두리 */
+            text-align: center;
+            /* 텍스트를 가운데 정렬 */
+        }
     </style>
     <script>
-     
+        let n = 1; // 숫자를 1부터 시작
+        let tag = '<table>'; // 테이블 시작 태그 생성
+
+        for (i = 0; i < 5; i++) { // 행을 5개 생성
+            tag += '<tr>'; // 행 시작 태그
+
+            for (j = 0; j < 5; j++) { // 각 행에 5개의 셀 생성
+                tag += `<td>${n++}</td>`; // 셀에 현재 숫자 출력 후 n 증가
+            }
+            
+            tag += '</tr>'; // 행 닫는 태그
+        }
+
+        tag += '</table>'; // 테이블 닫는 태그
+        document.write(tag); // 최종 테이블 HTML을 문서에 삽입
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

@@ -5,10 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-   
+        .bold{
+            font-weight: bold;
+        }
+        .red{
+            color: red;
+        }
     </style>
     <script>
- 
+        /* 
+            1~100까지 숫자들을 출력
+            단, 5와 9의 배수는 출력할때 글꼴을 두껍게 처리
+            3과 9의 배수는 글자색을 빨간색으로 처리
+        */  
+       for(i=1;i<=100;i++){
+        let classValue ='';
+        if(i % 5 == 0 || i % 9 == 0)
+            classValue += 'bold ';
+        if(i % 3 == 0 || i % 9 == 0)
+            classValue += 'red ';
+        document.write(`<span class='${classValue}'>${i} </span>`);
+       }
     </script>
 </head>
 <body>

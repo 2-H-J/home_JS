@@ -5,7 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>배열</title>
     <script>
-    
+      //배열 생성
+      let arr = [10,20,true,false,'test',3.1415];
+      console.log(arr);
+      document.write('<h2>배열 값을 가져오는 방법 - 1</h2>');
+      for(i=0;i<arr.length;i++){
+        document.write(arr[i],'<br>');
+      }
+
+      document.write('<h2>배열 값을 가져오는 방법 - 2</h2>');
+      for(n in arr){
+        document.write(arr[n],'<br>');
+      }
+
+      document.write('<h2>배열 값을 가져오는 방법 - 3</h2>');
+      for(n of arr){
+        document.write(n,'<br>');
+      }
+
     </script>
   </head>
   <body></body>

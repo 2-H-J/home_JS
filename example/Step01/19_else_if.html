@@ -5,7 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>if문</title>
     <script>
-        
+        //점수를 5개 입력 받아서, 입력받은 점수들의 평균을 구함
+        let score = 0;
+
+        for(i=0;i<5;i++){
+            score += Number(prompt('점수 입력',0));
+        }
+        score /= 5;
+        console.log(score)
+        //평균에 따른 성적 등급을 출력
+        if(score >= 90)
+            document.write("A");
+        else if(score >= 80)
+            document.write("B");
+        else if(score >= 70)
+            document.write("C");
+        else if(score >= 60)
+            document.write("D");
+        else
+            document.write("F");
     </script>
 </head>
 <body>

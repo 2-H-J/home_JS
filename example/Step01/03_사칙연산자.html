@@ -15,7 +15,7 @@
         document.write(n1 - n2, "<br>");
         document.write(n1 * n2, "<br>");
         document.write(n1 / n2, "<br>");
-        document.write(n1 % n2, "<br>");
+        document.write(n1 % n2, "<br><hr>");
 
         // ---------------------------------------------
 
@@ -23,20 +23,23 @@
         let str = '안녕하세요';
         document.write(str + n1 + n2, '<br>');
 
-        str = '1000';
+        str = '1000'; // 문자열로 선언하면 자동으로 타입이 문자열로 들어간다.
+        // 문자열이 들어간 덧셈은 number타입 덧셈이 안되고 문자열이 이어진다.
         document.write(str + n1 + n2, '<br>');
-        document.write(str * 2, '<br>');
+
+        // 덧셈은 문자열을 연결하지만 다른 연산자는 연산이 될 수있다.
+        document.write(str * 2, '<br><hr>');
 
         // -----------------------------------------------------
 
         // prompt() 함수를 사용하여 사용자에게 숫자를 입력하도록 요청
-        let msg = Number(prompt('숫자하나 입력하세요', 0));// prompt
-        document.write(msg, '<br>')
+        let msg = Number(prompt('숫자하나 입력하세요', 0));// prompt('메세지창 내용',초기값)
+        document.write(msg, '<br>');
 
         // 입력 받은 숫자에 3을 곱해서 출력
-        document.write(msg * 3, '<br>')
+        document.write(msg * 3, '<br>');
         // 입력 받은 숫자에 100을 더해서 출력
-        document.write(msg + 100, '<br>')
+        document.write(msg + 100, '<br>');
     </script>
 </head>
 

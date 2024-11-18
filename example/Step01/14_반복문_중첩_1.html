@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>반복문</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반복문</title>
+  <style>
+    .container {
+      display: flex;
+      /* 자식 요소를 가로로 나열 */
+      flex-flow: row nowrap;
+      /* 한 줄로 나열, 줄바꿈 없이 */
+      gap: 20px;
+      /* 각 열 사이 간격 20px */
+    }
+
+    h2 {
+      text-align: center;
+      /* 각 단의 제목을 가운데 정렬 */
+    }
+  </style>
+  <script>
+    let tag = `<div class='container'>`; // 구구단 전체를 감쌀 컨테이너 시작 태그 생성
+
+    for (dan = 2; dan < 10; dan++) { // 2단부터 9단까지 반복
+      tag += `<div><h2>${dan}단</h2>`; // 각 단의 제목(h2)을 포함한 div 추가
+
+      for (i = 1; i < 10; i++) { // 각 단의 내용을 반복
+        tag += `<p>${dan} * ${i} = ${dan * i}</p>`; // 구구단 계산 결과를 p 태그로 추가
+      }
       
-    </style>
-    <script>
-      
-    </script>
+      tag += `</div>`; // 각 단을 마감하는 div 닫는 태그
+    }
+
+    tag += `</div>`; // 전체 구구단을 감싸는 컨테이너 닫는 태그
+    document.write(tag); // 최종 HTML을 문서에 출력
+  </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

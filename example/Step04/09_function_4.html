@@ -6,7 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>함수</title>
     <script>
-       
+        // func(); //함수를 표현식으로 작성하면 생성된 후에 사용해야함, 미리 메모리에 올라가 있지 않음
+        //함수를 표현식으로 작성
+        //익명함수 : 이름이 없는 함수, 변수에 담아서 사용
+        //이벤트 처리, 배열의 각요소를 함수로 처리할 때 사용
+       let func = function(){
+        console.log('익명함수 실행')
+       }
+
+       func();//익명함수를 실행할 때는 변수명()로 실행 --> 변수명이 함수명이 됨
+
+       //화살표 함수 : ES6에서 추가된 함수, 함수를 간략하게 표현할때 사용(자바 람다와 비슷함)
+       let func2 = () => {
+            console.log('화살표 함수')
+       }
+       func2();
+
+       let func3 = (a,b) => a+b; //{} 없이 한줄일떄는 해당 결과값을 무조건 리턴
+       console.log(func3(10,5));
+
+       let func4 = a => a * a; //매개변수가 하나면 ()가 필요 없음
+       console.log(func4(10));
     </script>
 </head>
 

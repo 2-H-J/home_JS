@@ -5,7 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PC page</title>
   <script>
-   
+   //접속한 기기를 판단을 해서
+    //안드로이드, 아이폰, 아이패드 이면 모바일 페이지(mobile_page.html)로 이동
+    //location, navigator, indexof
+    let info = navigator.userAgent.toLowerCase();
+    document.write(info);
+
+    let n = info.indexOf('android') + info.indexOf('ipad') + info.indexOf('iphone');
+
+    if(n != -3 && confirm('모바일에서 접속하셨습니다.\n모바일 페이지로 이동할까요?')){
+       location.href = './mobile_page.html';
+    }
   </script>
 </head>
 <body>

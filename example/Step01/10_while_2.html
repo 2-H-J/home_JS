@@ -1,17 +1,56 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>while</title>
     <style>
-       
+        * {
+            font-size: 1.1em;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .red {
+            color: red;
+
+        }
     </style>
     <script>
-      
+        //   1부터 10까지 출력을 할 건데 단 숫자가 짝수면 글자색을 파랑색, 홀수면 글자색 빨강색으로 출력
+        let i = 1;
+        while (i <= 10) {
+            // if (i % 2 == 0)
+            //     document.write('<span class="blue">' + i + '</span>');
+            // else
+            //     document.write('<span class="red">' + i + '</span>');
+
+            // 빽틱
+            if (i % 2 == 0) {
+                document.write(`<p class='blue'>${i}</p>`);
+            } else {
+                document.write(`<p class='red'>${i}</p>`);
+            }
+            i++;
+        }
+
+        document.write('<hr>')
+        // 숫자 하나를 입력 받아서 해당 숫자의 구구단을 출력
+        let dan = Number(prompt('단을 입력하세요 ', 0))
+
+        i = 1;
+        while(i < 10){
+            document.write(`<p> ${dan} * ${i} = ${dan*i}</p>`);
+            i++;
+        }
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

@@ -10,10 +10,51 @@
       margin:0;
       padding:0;
     }
-   
+    .container{
+     width: 800px;
+     margin: 0 auto;
+    }
+    table{
+      border-collapse: collapse;
+    }
+    td{
+      width: 100px;
+      border: 1px solid black;
+      text-align: center;
+      padding: 10px;
+    }
+    .icon{
+      width: 64px;
+      height: 64px;
+      display: inline-block;
+      background-image: url(img/chair_2.png);
+    }
+    .icon:hover{
+      background-image: url(img/chair_1.png);
+    }
   </style>
   <script>
-   
+    let peoples = Number(prompt('입장객은 몇 명인가요?', 0));
+    let line_peoples = Number(prompt('한 줄에 몇 명씩 앉습니까?', 0));
+
+    let max_line = Math.ceil(peoples / line_peoples);
+
+    document.write(`<h1>자리배치도</h1><p>모두 ${max_line}줄이 필요합니다.</p>`);
+
+    //좌석표 출력하는 코드
+    // 테이블 출력하는 부분을 참고
+    // 마지막 줄의 경우 좌석 출력 끝나면 빈공간까지 출력
+    let seat_number = 1;
+    let tag = '<div class=\'container\'><table>';
+    for(line = 0;line < max_line;line++){
+      tag += '<tr>';
+      for(seat = 0;seat < line_peoples && seat_number <= peoples; seat++){
+        tag += `<td><span class='icon'></span><br>좌석 : ${seat_number++}</td>`;
+      }
+      tag += '</tr>';
+    }
+    tag += '</table></div>';
+    document.write(tag);
   </script>
 </head>
 

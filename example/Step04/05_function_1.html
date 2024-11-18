@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>함수</title>
     <script>
-       
+        // 함수를 선언하면 호이스팅(Hoisting)으로 인해 함수가 미리 메모리에 등록됩니다.
+        // 그래서 함수 선언 순서와 상관없이 호출이 가능합니다.
+        console.log(sum(10, 20)); // 함수 호출: 10 + 20을 계산한 결과 출력 (호출 시 결과는 30)
+
+        // undefined: 값이 없는 상태를 의미 (정의되지 않은 값).
+        // null: 데이터가 비어 있음을 의미 (의도적으로 값이 없음을 표시).
+
+        // 함수 선언
+        function sum(a, b) {
+            // b가 undefined(두 번째 인수가 전달되지 않음)일 경우, 함수 실행 중단
+            if (b == undefined) return; // b가 없으면 return으로 종료 (결과 undefined 반환)
+
+            // a와 b 값을 더한 결과를 반환
+            return a + b;
+        }
+
+        // 함수 호출: 10 + 20
+        console.log(sum(10, 20)); // 결과: 30
+
+        // 함수 호출: 인수를 하나만 전달
+        // b가 전달되지 않으므로 undefined가 저장되고, if문에 의해 함수 실행 중단
+        console.log(sum(10)); // 결과: undefined
+
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

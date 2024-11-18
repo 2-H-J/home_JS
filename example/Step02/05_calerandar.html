@@ -6,15 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>달력</title>
     <style>
-     
+     .container{
+        width: 1200px;
+        margin: 0 auto;
+     }
+     h2{
+        text-align: center;
+     }
+     table{
+        margin: 0 auto;
+        border-collapse: collapse;
+     }
+     th,td{
+        width: 100px;
+        border:1px solid black;
+     }
+     th:first-child, td:first-child{
+        color:red;
+     }
+     th:last-child, td:last-child{
+        color:blue;
+     }
+     td{
+        vertical-align: top;
+        text-align: right;
+        padding:5px;
+        height: 100px;
+     }
+     .disable{
+        color : gray !important;
+     }
     </style>
     <script>
-      
+      //1. 오늘 날짜 생성
+      let today = new Date();
+    //   let today = new Date(2024,9,1);
+      //2. 현재 월의 첫번째 날짜, 현재월을 마지막 날짜를 구함
+      let startDate = new Date(today.getFullYear(),today.getMonth(),1);
+      let endDate = new Date(today.getFullYear(),today.getMonth()+1,0);
+      //요일값 일 - 0 ~ 토 - 6
+      //3. 달력상으로 첫번째 칸 날짜를 구함(요일값, 월초 이용) 
+      startDate.setDate(startDate.getDate()-startDate.getDay());
+      //4. 달력상으로 마지막 칸 날짜를 구함(요일값, 월말 이용)
+      endDate.setDate(endDate.getDate() + 6 - endDate.getDay());
+      console.log(startDate.toLocaleString(), endDate.toLocaleString());
+      //5. 테이블 태그를 조립
+      //5-1. 요일 조립
+      let tag = `<div class='container'><h2>${today.getFullYear()} - ${today.getMonth() + 1}월</h2><table><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>`;
+      //5-2. 달력 일수를 조립
+      //달력 줄수
+      /*
+      let line = Math.ceil((endDate.getTime() - startDate.getTime()) / (7 * 24 * 60 * 60 * 1000));
+      console.log(line)
+      for(i = 0 ;i < line ;i++){
+            tag += '<tr>';
+            for(j=0;j<7;j++){
+                if(startDate.getMonth() == today.getMonth())
+                    tag += `<td>${startDate.getDate()}</td>`;
+                else
+                    tag += `<td class='disable'>${startDate.getDate()}</td>`;
+                startDate.setDate(startDate.getDate()+1);
+            }
+            tag += '</tr>';
+        }
+        */
+       //-----------------------------------
+       //반복문 하나로 작업
+       while(startDate.getTime() <= endDate.getTime()){
+        switch(startDate.getDay()){
+            case 0:
+                tag += `<tr><td class='${startDate.getMonth() == today.getMonth() ? '' : 'disable'}'>${startDate.getDate()}</td>`;
+                break;
+            case 6:
+                tag += `<td class='${startDate.getMonth() == today.getMonth() ? '' : 'disable'}'>${startDate.getDate()}</td></tr>`;
+                break;
+            default:
+                tag += `<td class='${startDate.getMonth() == today.getMonth() ? '' : 'disable'}'>${startDate.getDate()}</td>`;
+        }
+        startDate.setDate(startDate.getDate()+1);
+       }
+      tag += '</table></div>';
+      document.write(tag);
     </script>
 </head>
 
 <body>
-
+    
+        
 </body>
 
 </html>

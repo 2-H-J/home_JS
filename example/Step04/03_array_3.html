@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>배열</title>
-    <script>
-      
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열</title>
+  <script>
+    // 배열 두 개 생성
+    const arr1 = [1, 2, 3, 4, 5];   // 첫 번째 배열
+    const arr2 = [6, 7, 8, 9, 10];  // 두 번째 배열
+
+    // arr1, arr2를 하나의 배열로 합치기
+    // 방법 1: concat 메서드 사용
+    const arr3 = arr1.concat(arr2); // 두 배열을 이어붙여 새로운 배열 생성
+    console.log(arr3);  // 합쳐진 배열 출력
+    console.log(arr1, arr2);  // 원본 배열은 변경되지 않음
+
+    // 방법 2: 스프레드 연산자(...) 사용
+    const arr4 = [...arr1, ...arr2];  // 스프레드 연산자를 사용해 두 배열 합치기
+    console.log(arr4);  // 합쳐진 배열 출력
+    console.log(arr1, arr2);  // 원본 배열은 변경되지 않음
+
+    // 배열의 내용을 하나의 문자열로 합치기
+    // 특정 문자를 구분자로 사용 (예: '&') --> CSV 형태와 유사
+    let str = arr3.join('&'); // '&'로 각 요소를 연결한 문자열 생성
+    console.log(str);  // 문자열 출력
+
+    // 문자열의 내용을 특정 문자로 자르기
+    // split 메서드를 사용해 자른 결과는 배열로 반환
+    let arr5 = str.split('&');  // '&'를 기준으로 문자열을 나누어 배열로 변환
+    console.log(arr5);  // 배열 출력
+  </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

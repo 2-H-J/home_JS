@@ -5,7 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>함수</title>
     <script>
-       
+        //가변길이 매개변수 : 인자값을 여러개 받아서 배열로 만들어서 처리
+       function sum(...arr){
+        console.log(arr);
+       }
+       sum(1,2,3,4);
+       sum(1,2,3,4,5,6,7,8);
+       sum(1,2,3,4,5,6,7,8,9,10);
+       sum(1,2,3);
+       sum(); //undefined는 안뜸, 빈배열됨
+
+       //가변길이 매개변수 일반적으로 맨 마지막에 넣어야됨
+    //    function sum2(...arr,a,b) {
+       function sum2(a,b,...arr) {
+        console.log(a,b,arr);
+       }
+       sum2(1,2,3,4,5,6);
+       sum2(1,2,3,6);
+       sum2(1,2,5,6);
+
+       //자바 스트립트에서는 함수도 객체로 관리, 변수에 저장이 가능
+       //해당 변수명이 함수명이 됨.
+       let r = function(a,b){
+        return a+b;
+       }
+       console.log(r(10,20));
+       r = sum;
+       r(1,2,3,4,5);
     </script>
 </head>
 <body>

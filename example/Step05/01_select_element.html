@@ -10,7 +10,10 @@
             background-color: red;
         }
     </style>
-</head>
+    <script>
+        
+    </script>
+</head> 
 <body>
     <input type="text" id="txt" value="기본값"><button>검색</button>
     <hr>
@@ -26,7 +29,41 @@
     <p>5</p>
     <h1>제목 태그</h1>
     <script>
-     
+        let txt = document.getElementById('txt');
+        console.log(txt.value);
+        // document.getElementsByTagName('태그명'); --> 배열 형태로 반환
+        // document.getElementsByClassName('클래스 속성값'); --> 배열 형태로 반환
+        // document.getElementsByName('name 속성값'); --> 배열 형태로 반환
+        //document.querySelector('선택자'); ---> 하나의 요소만 반환
+        txt = document.querySelector('#txt');
+        console.log(txt.value);
+        //선택된 태그의 속성값 변경
+        txt.value = '바꾼값';
+        txt.type = 'password';
+        //document.querySelectorAll('선택자') ---> 리스트로 반환
+        let p = document.querySelectorAll('p');
+        console.log(p);
+        for(tag of p){
+            console.log(tag.innerHTML);
+            tag.innerHTML = `<u>${Math.ceil(Math.random() * 26)}</u>`;
+            //background-color --> backgroundColor
+            //font-weight --> fontWeight
+            tag.style.backgroundColor = 'green';
+            //글자색 흰색으로 변경
+            tag.style.color = '#FFFFFF';
+        }
+
+        //input 태그 전부 선택
+        //입력된 값을 삭제, 배경색을 전부 빨강색 처리
+        //읽기 전용으로 처리, 데이터 입력을 막음
+        let input = document.querySelectorAll('input');
+
+        for(tag of input){
+            tag.value = '';
+            tag.style.backgroundColor = 'red';
+            console.log(tag.readOnly)
+            tag.readOnly = true;
+        }
 
     </script>
 </body>

@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>for</title>
-    <script>
-      
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for</title>
+  <script>
+    //10_while2에서 만든 구구단을 for문으로 변경
+    let dan = Number(prompt('단을 입력하세요', 0));
+
+    for (i = 1; i < 10; i++) {
+      document.write(`<p>${dan} * ${i} = ${dan * i}</p>`);
+    }
+
+    console.log(i);
+
+    document.write('<hr>');
+
+    for (i = 20; i < 30; i++) {
+      document.write(`<p>${dan} * ${i} = ${dan * i}</p>`)
+    }
+  </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
