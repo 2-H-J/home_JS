@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <script>
-     
+        window.onload = () => {
+            // h1태그 선택, 더블 클릭을 하면 h1태그에 있는 내용을 경고창으로 출력
+            let h1 = document.querySelector('h1'); // 페이지의 첫 번째 h1 태그 선택
+
+            // ondblclick 이벤트: h1 태그를 더블 클릭했을 때 실행될 함수
+            h1.ondblclick = () => {
+                // alert(h1.innerHTML); // h1 태그의 내용을 경고창으로 출력 (정상 작동)
+                alert(this.innerHTML); // 화살표 함수에서는 this가 기대하는 대로 동작하지 않음
+                console.log(this); // this의 값 확인
+
+                // this의 의미
+                // 1. 화살표 함수일 때:
+                //    - this는 현재 객체(h1 태그)가 아닌, 상위 스코프(이 경우 window 객체)를 참조
+                //    - 따라서 h1 태그의 내용을 this로 접근할 수 없음
+                // 2. 익명 함수(일반 function 함수)일 때:
+                //    - this는 현재 객체를 참조 (이 경우 h1 태그)
+                //    - h1 태그의 내용을 this로 접근 가능
+            };
+
+            // 해결 방법: 일반 함수로 변경하여 this를 기대대로 동작하게 만듦
+            // h1.ondblclick = () => {
+            //     alert(h1.innerHTML);
+            //     alert(this.innerHTML); // 현재 h1 태그의 내용을 경고창으로 출력
+            //     console.log(this); // this는 h1 태그를 참조
+            // };
+            h1.ondblclick = function () {
+                // alert(h1.innerHTML);
+                alert(this.innerHTML); // 현재 h1 태그의 내용을 경고창으로 출력
+                console.log(this); // this는 h1 태그를 참조
+            };
+        };
+
     </script>
 </head>
+
 <body>
     <h1 id="h1">제목 태그</h1>
 </body>
+
 </html>

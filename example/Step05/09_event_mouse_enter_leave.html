@@ -15,7 +15,24 @@
         }
     </style>
     <script>
-        
+         window.onload = () => {
+            // div태그 선택
+            let div = document.querySelector('#div');
+            let p = document.querySelector('#p');
+
+            // 다음 예제로 over, out이랑 enter,leave랑 차이
+            div.onmouseenter = () => {
+                console.log(`div에 마우스 올라감`);
+                div.style.borderColor = 'red';
+            }
+            
+            
+            div.onmouseleave = () => {
+                console.log(`div에 마우스 벗어남`);
+                div.style.borderColor = 'black';
+            }
+
+        }
         
     </script>
 </head>

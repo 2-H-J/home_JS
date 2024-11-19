@@ -15,7 +15,7 @@
             width: 200px;
             height: 100px;
             border: 1px solid black;
-            position: fixed;
+            position: absolute;
             top: 20px;
             left: 20px;
         }
@@ -23,14 +23,31 @@
 </head>
 
 <body>
-    
-    </script>
+    <div id="pop"></div>
+    <script>
+        // body 태그 선택
+        let body = document.querySelector('body'); // HTML 문서의 body 태그를 선택
 
+        // 아이디 속성이 pop인 태그 선택
+        let pop = document.querySelector('#pop'); // ID가 'pop'인 요소를 선택 (클릭 좌표를 표시하는 데 사용)
+
+        // body 태그에 클릭 이벤트 추가
+        // body 태그를 클릭했을 때 실행될 동작 정의
+        body.onclick = function (event) {
+            // alert('body클릭 확인'); // 디버깅용: body 클릭 시 경고창 표시
+            console.log(event); // 이벤트 객체 출력 (이벤트 관련 정보를 확인하기 위해)
+
+            // 클릭한 마우스 좌표값 출력
+            // 이벤트 객체(event)의 offsetX와 offsetY 속성을 사용해 클릭 좌표를 pop 요소에 표시
+            pop.innerHTML = `${event.offsetX} / ${event.offsetY}`; // 클릭 위치를 "X / Y" 형식으로 출력
+
+            // pop 요소의 위치를 클릭한 좌표값으로 설정
+            pop.style.left = event.offsetX + 'px'; // 클릭한 X 좌표값으로 pop의 left 속성 설정
+            pop.style.top = event.offsetY + 'px'; // 클릭한 Y 좌표값으로 pop의 top 속성 설정
+        };
+
+
+    </script>
 </body>
 
 </html>
-
-
-
-
-

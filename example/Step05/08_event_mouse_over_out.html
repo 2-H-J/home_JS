@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <style>
-        div{
-            padding:30px;
-            border:5px solid black;
+        div {
+            padding: 30px;
+            border: 5px solid black;
         }
-        p{
+
+        p {
             background-color: aquamarine;
         }
     </style>
     <script>
-      
+        window.onload = () => {
+            // div태그 선택
+            let div = document.querySelector('#div');
+            let p = document.querySelector('#p');
+
+            // div에 onmouseover이벤트 발생시 테두리를 빨강색으로 지정
+            div.onmouseover = () => {
+                console.log(`div에 마우스 올라감`);
+                div.style.borderColor = 'red';
+            }
+            // div에 onmouseout이벤트 발생시 테두리 검정색(원상복구) 지정
+            div.onmouseout = () => {
+                console.log(`div에 마우스 벗어남`);
+                div.style.borderColor = 'black';
+            }
+
+        }
     </script>
 </head>
+
 <body>
     <div id="div">
         <p id="p">내용</p>
     </div>
 </body>
+
 </html>

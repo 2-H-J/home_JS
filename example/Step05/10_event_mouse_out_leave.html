@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,17 +8,37 @@
     <title>event</title>
     <style>
         div {
-            padding:50px;
-            border:1px solid black;
+            padding: 50px;
+            border: 1px solid black;
         }
-        p{
-            border:1px solid blue;
+
+        p {
+            border: 1px solid blue;
         }
     </style>
     <script>
-       
+        window.onload = function () {
+            // box1, box2 선택
+            // box1, box2 이벤트로 마우스가 벗어나면 배경색을 빨강으로 지정
+            let box1 = document.querySelector('#box1'); // ID가 'box1'인 요소 선택
+            let box2 = document.querySelector('#box2'); // ID가 'box2'인 요소 선택
+
+            // onmouseout: 마우스가 요소를 벗어날 때 발생
+            // 자신의 내부에 포함된 다른 태그로 이동해도 이벤트가 발생함
+            box1.onmouseout = function () {
+                this.style.backgroundColor = 'red'; // 마우스가 벗어나면 배경색을 빨강으로 변경
+            };
+
+            // onmouseleave: 마우스가 요소를 완전히 벗어날 때 발생
+            // 내부에 있는 다른 태그로 이동해도 이벤트가 발생하지 않음
+            box2.onmouseleave = function () {
+                this.style.backgroundColor = 'red'; // 요소 자체를 벗어날 때만 배경색을 빨강으로 변경
+            };
+        };
+
     </script>
 </head>
+
 <body>
     <h2>onmouseout 일때</h2>
     <div id="box1">
@@ -32,4 +53,5 @@
         <p><a href="#">링크</a></p>
     </div>
 </body>
+
 </html>

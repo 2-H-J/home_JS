@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>롤오버 이미지</title>
     <script>
-        
+        // window.onload 이벤트
+        // HTML 문서가 모두 로드된 후 실행
+        window.onload = function () {
+            // 첫 번째 이미지 태그 선택
+            let img = document.querySelector('img'); // 페이지에서 첫 번째 이미지 태그 선택
 
+            // 마우스가 이미지 위로 올라갔을 때 이벤트
+            img.onmouseenter = function () {
+                // 이미지 경로를 'img/linkedin_2.png'로 변경
+                img.src = 'img/linkedin_2.png';
+            };
+
+            // 마우스가 이미지 밖으로 나갔을 때 이벤트
+            img.onmouseleave = function () {
+                // 이미지 경로를 'img/linkedin_1.png'로 변경
+                img.src = 'img/linkedin_1.png';
+            };
+        };
     </script>
 </head>
+
 <body>
     <img src="img/linkedin_1.png" alt="">
 </body>
+
 </html>

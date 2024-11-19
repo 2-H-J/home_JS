@@ -7,7 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <script>
-        
+        window.onload = () => {
+            // content, btn 선택
+            let btn = document.querySelector('#btn'); // ID가 'btn'인 요소 선택
+            let content = document.querySelector('#content'); // ID가 'content'인 요소 선택
+
+            // 마우스 버튼을 누른 순간
+            btn.onmousedown = (e) => {
+                console.log(e); // 왼쪽 버튼: 0, 가운데 버튼(휠): 1, 오른쪽 버튼: 2
+                content.innerHTML = `${e.button} 마우스 버튼 누름`; // 누른 버튼의 정보를 표시
+                if (e.button == 2) { // 오른쪽 버튼 클릭 확인
+                    alert('오른쪽 버튼 클릭'); // 오른쪽 버튼 클릭 시 경고창 표시
+                }
+            };
+
+            // 마우스 버튼을 뗀 순간
+            btn.onmouseup = (e) => {
+                content.innerHTML = `${e.button} 마우스 버튼 뗌`; // 뗀 버튼의 정보를 표시
+            };
+
+            // 마우스 이동 이벤트
+            // onmousemove는 전역(window 객체)에서 발생
+            onmousemove = (e) => {
+                // e.clientX: 화면에서 마우스 포인터의 X축 좌표
+                // e.clientY: 화면에서 마우스 포인터의 Y축 좌표
+                content.innerHTML = `X : ${e.clientX} / Y : ${e.clientY}`; // 이동 거리 표시
+            };
+        };
+
     </script>
 </head>
 

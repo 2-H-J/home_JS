@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>click event</title>
     <script>
-      
+        // 이벤트 : 웹브라우저에서 발생되는 행동, 사건, 움직임 등을 의미
+        window.onload = () => {
+            // onload : 웹 문서를 전부 읽은 후 실행되는 이벤트
+            // 웹 페이지가 완전히 로드된 후 실행될 함수
+
+            // 디버깅용 - id 속성을 가진 요소 확인
+            // console.log(document.querySelector('#id')); 
+
+            // 아이디 속성값이 id, pass, btn인 태그 선택 ( querySelectorAll은 태그가 많을때 사용)
+            let id = document.querySelectorAll('#id')[0]; // id 속성을 가진 첫 번째 태그 선택
+            let pass = document.querySelectorAll('#pass')[0]; // pass 속성을 가진 첫 번째 태그 선택
+            let btn = document.querySelectorAll('#btn')[0]; // btn 속성을 가진 첫 번째 태그 선택
+
+            console.log(id, pass, btn); // 선택된 요소들을 콘솔에 출력하여 확인
+
+            // 버튼(btn)을 클릭했을 때 실행될 이벤트 핸들러 설정
+            btn.onclick = function () {
+                // alert('버튼 클릭'); // 버튼 클릭 시 경고창 표시
+
+                // 버튼을 클릭 했을때 경고창으로 입력한 아이디값 암호값 출력 확인
+                // 사용자가 입력한 아이디와 암호 값을 확인하기 위해 `alert` 사용
+                // alert(`입력된 ID : ${id.value}\n입력된 PW : ${pass.value}`);
+                // alert(id.value + ' / ' + pass.value); // 다른 방식으로 출력
+
+                // 아이디와 비밀번호가 6자리 미만으로 입력되면 경고창 띄우기
+                if (id.value.length < 6 || pass.value.length < 6) { // 조건: ID 또는 PW가 6글자 미만
+                    alert('아이디와 비밀번호는 6글자 이상 입력해야 합니다.'); // 경고 메시지 출력
+                    id.focus(); // 아이디 입력란으로 포커스 이동
+                }
+            };
+        };
+
     </script>
 </head>
+
 <body>
     <input type="text" id="id"><br>
     <input type="password" id="pass"><br>
     <button id="btn">로그인</button>
 </body>
+
 </html>

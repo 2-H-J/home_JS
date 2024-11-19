@@ -1,14 +1,162 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>배열, 객체, 연산</title>
     <script>
-       
+        // 배열 선언 및 초기화
+        const arr1 = [1, 2, 3, 4, 5];
+        const arr2 = [6, 7, 8, 9, 10];
+
+        // 스프레드 연산자 (Spread Operator)
+        // 배열이나 객체의 요소를 개별적으로 펼치는 연산
+        console.log(...arr1); // arr1 배열의 요소를 펼쳐서 출력
+        // 추가 설명: 이 출력은 1, 2, 3, 4, 5가 각 요소로 나열됩니다.
+
+        console.log(arr1);    // 배열 자체를 출력
+        // 추가 설명: 이 출력은 [1, 2, 3, 4, 5] 형태의 배열로 보여줍니다.
+
+        // 배열 결합
+        const arr3 = [...arr1, ...arr2]; // arr1과 arr2의 요소를 결합한 새로운 배열
+        console.log(...arr3);           // 결합된 배열의 요소를 펼쳐서 출력
+        // 추가 설명: 결과적으로 1부터 10까지의 숫자가 나열됩니다.
+
+        // 객체 생성
+        const obj1 = {
+            name: '홍길동',        // 이름
+            age: 20,              // 나이
+            printInfo: function () {
+                // 객체의 정보를 출력하는 메서드
+                console.log(this.name, this.age);
+            }
+        };
+        console.log(obj1);           // 객체 자체 출력
+        // 추가 설명: 객체의 모든 속성과 메서드가 표시됩니다.
+
+        console.log(obj1.name, obj1.age); // 이름과 나이 출력
+        // 추가 설명: '홍길동'과 20이라는 값만 출력됩니다.
+
+        obj1.printInfo();            // printInfo 메서드 호출
+        // 추가 설명: this는 obj1을 참조하며, '홍길동 20'이 출력됩니다.
+
+        // 객체에 새로운 속성 추가
+        obj1.gender = 'M';           // 성별 추가
+        console.log(obj1);           // 성별 추가된 객체 출력
+        // 추가 설명: gender: 'M' 속성이 추가된 전체 객체를 확인할 수 있습니다.
+
+        console.log(obj1.name, obj1.age, obj1.gender); // 모든 정보 출력
+        // 추가 설명: '홍길동 20 M' 순으로 출력됩니다.
+
+        // 새로운 객체 생성
+        const obj2 = {
+            city: '경기도 안양시',  // 사는 도시
+            tel: '010-1111-2222',   // 연락처
+            printInfo: function () {
+                // 객체의 정보를 출력하는 메서드
+                console.log(this.city, this.tel);
+            }
+        };
+        console.log(obj2);           // obj2 객체 출력
+        // 추가 설명: city와 tel 속성만 포함된 객체 출력.
+
+        obj2.printInfo();            // obj2의 printInfo 메서드 호출
+        // 추가 설명: '경기도 안양시 010-1111-2222'가 출력됩니다.
+
+        // 객체 결합
+        const obj3 = { ...obj1, ...obj2 }; // obj1과 obj2를 결합한 객체
+        console.log(obj3);                // 결합된 객체 출력
+        // 추가 설명: 두 객체의 속성이 합쳐진 하나의 객체로 표시됩니다.
+
+        obj3.printInfo();                 // 결합된 객체의 printInfo 호출 (obj2의 printInfo 사용)
+        // 추가 설명: obj2의 메서드 printInfo가 호출되며, obj2의 city와 tel 속성이 출력됩니다.
+
+        // 배열 확장
+        const arr4 = [...arr1, ...arr2, 11, 12, 13, 14, 15]; // arr1, arr2에 추가 요소 결합
+        console.log(arr4);           // 확장된 배열 출력
+        // 추가 설명: 1부터 15까지의 값이 포함된 배열이 출력됩니다.
+
+        // ----------------------------------------------------------------
+        // 함수 종류
+
+        // map()
+        // 배열에 각 요소를 변환해서 새로운 배열을 만들어서 반환하는 함수
+        // 기존 배열 요소를 변경하지는 않음
+
+        // item : 현재 배열 요소
+        // idx : 현재 인덱스 번호
+        // arr : 현재 작업중인 배열
+
+        // 기존 배열의 각 요소를 변환해 새로운 배열 생성
+        const arr5 = arr4.map(function (item, idx, arr) {
+            console.log(item, idx, arr); // 현재 요소, 인덱스, 전체 배열 출력
+            return item + 5;            // 요소에 5를 더한 값을 반환
+        });
+        // 추가 설명: 기존 배열 arr4의 각 요소에 5를 더해 새로운 배열 arr5를 생성.
+
+        console.log(arr4); // 원래 배열 (변경 없음)
+        // 추가 설명: 원래 배열 arr4는 변하지 않고 그대로 유지됩니다.
+
+        console.log(arr5); // 새로운 배열 (변환된 결과)
+        // 추가 설명: arr5에는 arr4의 각 요소에 5가 더해진 값이 포함됩니다.
+
+        const arr6 = arr4.map(item => item + 5);// 위함수를 한줄로 표현하기
+
+        // ----------------------------------------------------------------
+        // find() - 최초의 한개 값만 리턴
+        // 배열의 각 요소를 검사하여 조건에 맞는 요소 중 제일 첫번째 값만 반환
+        // 5의 배수 검색
+        let result = arr4.find((item, idx, arr) => {
+            return item % 5 == 0;
+        });
+        console.log(result);
+
+        result = arr4.find(item => item % 5 == 0); // 위 함수를 한줄로 표현하기
+        console.log(result);
+
+        // ----------------------------------------------------------------
+        // filter() - 여러개 값을 배열로 만들어서 리턴
+        // 배열의 각 요소를 검사하여 조건에 맞는 요소들을 가지고 새로운 배열을 만들어서 반환
+        result = arr4.filter((item, idx, arr) => item % 5 == 0);
+        console.log(result);
+
+        // ----------------------------------------------------------------
+        // reduce() 메서드
+        // 배열의 각 요소들을 누적하여 하나의 값으로 만들어 반환하는 함수
+        // 기존 배열의 요소를 변경하지 않음
+        // 주로 총합 계산, 합산, 총계, 태그, 문자열 조립 등...에 사용
+        // arr4에 있는 모든 값의 합을 출력
+
+        // acc : 이전 연산까지 누적된 값 / 누적값 (이전까지 계산된 값)
+        // cur : 현재 배열 요소 / 현재 요소 값
+        // idx : 현재 인덱스 값
+        let total = arr4.reduce((acc, cur, idx, arr) => {
+            // acc: 누적 계산 값 (이전까지의 합계)
+            // cur: 현재 배열 요소
+            // idx: 현재 배열의 인덱스 번호
+            // arr: 원본 배열 (reduce 내부에서 접근 가능)
+            console.log(`acc: ${acc}, cur: ${cur}, idx: ${idx}`); // 디버깅용으로 진행 과정 출력
+            return acc + cur; // 현재 요소(cur)를 누적(acc)하여 반환
+        }, 0); // 2번째 인자값은 acc 초기값
+        console.log(`arr4배열의 total값 : ${total}`); // 최종 계산된 합 출력
+
+        // 간소화
+        // 불필요한 매개변수(idx, arr) 제거 및 화살표 함수로 축약
+        total = arr4.reduce((acc, cur) => acc + cur);
+        console.log(`arr4배열의 간소화한 total값 : ${total}`);
+
+        // 추가 설명
+        // reduce()는 첫 번째 매개변수로 콜백 함수를 받고,
+        // 두 번째 매개변수로 누적값(acc)의 초기값을 받습니다.
+        // 초기값을 생략하면 배열의 첫 번째 요소가 초기값이 됩니다.
+        // 따라서 간소화한 코드에서도 동작이 동일하게 유지됩니다.
+
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
