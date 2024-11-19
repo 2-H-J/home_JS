@@ -13,6 +13,7 @@
             let img = document.querySelector('img'); // 페이지에서 첫 번째 이미지 태그를 가져옴
 
             // 이미지 태그 클릭 이벤트
+            // 1-------------------------------------------------------------------------
             img.onclick = function () {
                 // 현재 이미지 경로 확인
                 // img.src.includes('img/non_check.png')를 사용하여
@@ -25,6 +26,33 @@
                     img.src = 'img/non_check.png';
                 }
             };
+
+            // 2-------------------------------------------------------------------------
+            // 다른 방식
+            // let count = 0;
+
+            // img.onclick = () => {
+            //     count++;
+            //     if (count % 2 == 0) 
+            //         img.src = 'img/non_check.png';
+            //     else
+            //         img.src = 'img/check.png';
+            // }
+
+            // 3-------------------------------------------------------------------------
+            // 다른 방식
+            // let ok = true;
+            // img.onclick = function () {
+            //     if (ok == true) {
+            //         console.log('true')
+            //         img.src = 'img/check.png';
+            //     }else{ 
+            //         console.log('false')
+            //         img.src = 'img/non_check.png';
+            //     }
+            //     ok = !ok;
+            // }
+
         };
 
     </script>
