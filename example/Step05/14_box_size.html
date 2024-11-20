@@ -1,19 +1,69 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>길이 측정</title>
     <style>
-        *{
+        * {
             margin: 0;
-            padding:0;
+            padding: 0;
         }
-        
+
+        .outter {
+            width: 300px;
+            height: 300px;
+            border: 10px solid black;
+            padding: 10px 0px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .inner {
+            width: 200px;
+            height: 600px;
+            border: 10px solid red;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: blueviolet;
+            /* height(600) + padding(20*2) */
+        }
     </style>
 </head>
+
 <body>
-    
+    <div class="outter">
+        <div class="inner"></div>
+    </div>
 </body>
+    <script>
+        // height 길이 
+        let inner = document.querySelector('.inner');
+
+        console.log(inner.clientHeight); 
+        // clientHeight 길이값 : height(600) + padding(20*2) / css상 height + padding = 세로 640
+
+        console.log(inner.offsetHeight);
+        // offsetHeight 길이값 : height(600) + padding(20*2) + border(10*2) / css상 height + padding + border = 세로 660
+
+        console.log(inner.scrollHeight);
+        // scrollHeight 길이값 : height(600) + padding(20*2) / css상 height + padding + 보이지 않는 영역까지 길이 = 세로 640
+
+        console.log('----------------------------------')
+
+        let outter = document.querySelector('.outter');
+        console.log(outter.clientHeight)
+        // css상 height + padding = 세로 320
+
+        console.log(outter.offsetHeight)
+        // css상 height + padding + border = 세로 340
+
+        console.log(outter.scrollHeight)
+        // css상 height + padding + 보이지 않는 영역까지 길이 = 세로 680
+
+        // width 길이도 동일
+    </script>
+
 </html>

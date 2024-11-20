@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <script>
-       
+        // function createInput() {
+        //     // <input> 요소 생성
+        //     const input = document.createElement('input');
+
+        //     // 생성한 input의 속성 설정
+        //     input.type = 'text'; // 타입 설정
+        //     input.placeholder = 'Enter text'; // 플레이스홀더 추가
+        //     input.id = 'newInput'; // id 설정 (선택 사항)
+
+        //     // 부모 요소 선택
+        //     const parent = document.querySelector('#container');
+
+        //     // 부모 요소에 input 추가
+        //     parent.appendChild(input);
+        // }
+        window.onload = () => {
+
+            document.querySelector('#host').onchange = function() {
+                console.log(this.value);
+                if(this.value == 4){
+                    
+                }
+            }
+
+        }
     </script>
 </head>
+
 <body>
     <input type="text" id="email">@
     <select id="host">
@@ -18,5 +44,7 @@
         <option value="4">직접입력</option>
     </select>
     <span id="area"></span>
+    <div id="container"></div>
 </body>
+
 </html>

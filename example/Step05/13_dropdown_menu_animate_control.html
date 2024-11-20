@@ -4,21 +4,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>드롭다운 메뉴</title>
+    <title>드롭다운 메뉴_애니매이션</title>
     <style>
+        /* 모든 태그의 기본 margin과 padding을 제거 */
         * {
             margin: 0;
             padding: 0;
         }
 
+        /* 네비게이션 바 스타일 */
+        nav {
+            width: 1200px;
+            /* 네비게이션 바의 폭 */
+            margin: 100px auto;
+            /* 화면 중앙 정렬과 위쪽 여백 */
+            border: 1px solid black;
+            /* 외곽선 */
+        }
+
+        /* 네비게이션 바 안의 리스트 스타일 */
+        nav ul {
+            list-style-type: none;
+            /* 리스트 앞 기본 점 제거 */
+        }
+
+        /* 메인 메뉴 스타일 */
+        #main_menu {
+            display: flex;
+            /* 가로 정렬 */
+            flex-flow: row nowrap;
+            /* 줄바꿈 없이 한 줄로 정렬 */
+        }
+
+        /* 메인 메뉴 항목과 서브 메뉴의 너비 설정 */
+        #main_menu li,
+        .sub_menu {
+            width: calc(100% / 5);
+            /* 5등분 */
+        }
+
+        /* 메인 메뉴 링크의 기본 스타일 */
+        #main_menu a:link,
+        #main_menu a:visited {
+            display: inline-block;
+            /* 박스 형태 */
+            width: 100%;
+            /* 링크가 부모 요소 전체를 채우도록 설정 */
+            text-align: center;
+            /* 텍스트 중앙 정렬 */
+            padding: 20px 0px;
+            /* 상하 여백 */
+            border: 1px solid black;
+            /* 외곽선 */
+            text-decoration: none;
+            /* 밑줄 제거 */
+            color: black;
+            /* 글자 색상 */
+            box-sizing: border-box;
+            /* 패딩과 보더를 포함한 박스 크기 계산 */
+            font-size: 20px;
+            /* 글자 크기 */
+        }
+
+        /* 서브 메뉴 컨테이너 스타일 */
+        #sub_menu_container {
+            display: flex;
+            /* 가로 정렬 */
+            flex-flow: row nowrap;
+            /* 줄바꿈 없이 한 줄로 정렬 */
+            height: 0px;
+            /* 초기 높이 설정: 숨김 상태 */
+            overflow: hidden;
+            /* 숨겨진 영역 감춤 */
+
+        }
+
+        /* 서브 메뉴 링크의 기본 스타일 */
+        .sub_menu a:link,
+        .sub_menu a:visited {
+            display: inline-block;
+            /* 박스 형태 */
+            width: 100%;
+            /* 링크가 부모 요소 전체를 채우도록 설정 */
+            text-align: center;
+            /* 텍스트 중앙 정렬 */
+            padding: 16px 0px;
+            /* 상하 여백 */
+            border: 1px solid black;
+            /* 외곽선 */
+            text-decoration: none;
+            /* 밑줄 제거 */
+            color: purple;
+            /* 글자 색상 */
+            box-sizing: border-box;
+            /* 패딩과 보더를 포함한 박스 크기 계산 */
+            font-size: 16px;
+            /* 글자 크기 */
+        }
     </style>
     <script>
-        
+        // 페이지 로드 완료 후 실행되는 스크립트
+        window.onload = () => {
+            // 서브 메뉴의 실제 높이를 가져옴
+            let sub_menu_height = document.querySelector('#sub_menu_container').scrollHeight;
+            console.log(sub_menu_height); // 서브 메뉴의 높이를 로그로 확인
+
+            // 메뉴의 열림과 닫힘 상태를 정의한 CSS 옵션 객체
+            let open_menu = {
+                height: sub_menu_height + 'px' // 서브 메뉴를 열 때 높이 설정
+            };
+
+            let close_menu = {
+                height: '0px' // 서브 메뉴를 닫을 때 높이 설정
+            };
+
+            // 애니메이션 옵션 정의
+            let options = {
+                duration: 1000, // 애니메이션 지속 시간: 1초 (1000ms)
+                iterations: 1,  // 애니메이션 반복 횟수: 1회
+                fill: 'forwards' // 애니메이션이 끝난 후 최종 CSS 값 유지
+            };
+
+            // 애니메이션 실행 중인지 여부를 저장하는 플래그
+            let flag = false; // false: 애니메이션 실행 중 아님, true: 실행 중
+
+            // 네비게이션 바 요소 선택
+            let nav = document.querySelector('nav');
+
+            // 서브 메뉴 열기 애니메이션 함수
+            function animateOpenMenu() {
+                if (flag) {
+                    console.log('이미 실행중인 애니메이션이 있습니다.'); // 애니메이션 중복 실행 방지
+                    return; // 실행 중이면 함수 종료
+                }
+                flag = true; // 애니메이션 실행 상태로 설정
+
+                // 서브 메뉴 열기 애니메이션 실행
+                document.querySelector('#sub_menu_container')
+                    .animate(open_menu, options) // 정의된 열기 옵션과 애니메이션 설정으로 실행
+                    .addEventListener('finish', () => {
+                        flag = false; // 애니메이션 완료 후 실행 상태 해제
+                        nav.onmouseenter = null; // 마우스 진입 이벤트 해제 (애니메이션 중복 방지)
+                        nav.onmouseleave = animateCloseMenu; // 마우스 나가기 이벤트 설정
+                    });
+            }
+
+            // 서브 메뉴 닫기 애니메이션 함수
+            function animateCloseMenu() {
+                if (flag) {
+                    console.log('이미 실행중인 애니메이션이 있습니다.'); // 애니메이션 중복 실행 방지
+                    return; // 실행 중이면 함수 종료
+                }
+                flag = true; // 애니메이션 실행 상태로 설정
+
+                // 서브 메뉴 닫기 애니메이션 실행
+                document.querySelector('#sub_menu_container')
+                    .animate(close_menu, options) // 정의된 닫기 옵션과 애니메이션 설정으로 실행
+                    .addEventListener('finish', () => {
+                        flag = false; // 애니메이션 완료 후 실행 상태 해제
+                        nav.onmouseenter = animateOpenMenu; // 마우스 진입 이벤트 설정
+                        nav.onmouseleave = null; // 마우스 나가기 이벤트 해제 (애니메이션 중복 방지)
+                    });
+            }
+
+            // 초기 이벤트 설정: 마우스를 네비게이션 바에 올리면 메뉴 열림
+            nav.onmouseenter = animateOpenMenu;
+            // 마우스를 네비게이션 바에서 내리면 메뉴 닫힘
+            nav.onmouseleave = animateCloseMenu;
+        };
+
     </script>
 </head>
 
 <body>
-   
+    <nav>
+        <ul id="main_menu">
+            <li><a href="">메뉴1</a></li>
+            <li><a href="">메뉴2</a></li>
+            <li><a href="">메뉴3</a></li>
+            <li><a href="">메뉴4</a></li>
+            <li><a href="">메뉴5</a></li>
+        </ul>
+        <div id="sub_menu_container">
+            <ul class="sub_menu">
+                <li><a href="">메뉴1-1</a></li>
+                <li><a href="">메뉴1-2</a></li>
+                <li><a href="">메뉴1-3</a></li>
+                <li><a href="">메뉴1-4</a></li>
+                <li><a href="">메뉴1-5</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="">메뉴2-1</a></li>
+                <li><a href="">메뉴2-2</a></li>
+                <li><a href="">메뉴2-3</a></li>
+                <li><a href="">메뉴2-4</a></li>
+                <li><a href="">메뉴2-5</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="">메뉴3-1</a></li>
+                <li><a href="">메뉴3-2</a></li>
+                <li><a href="">메뉴3-3</a></li>
+                <li><a href="">메뉴3-4</a></li>
+                <li><a href="">메뉴3-5</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="">메뉴4-1</a></li>
+                <li><a href="">메뉴4-2</a></li>
+                <li><a href="">메뉴4-3</a></li>
+                <li><a href="">메뉴4-4</a></li>
+                <li><a href="">메뉴4-5</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="">메뉴5-1</a></li>
+                <li><a href="">메뉴5-2</a></li>
+                <li><a href="">메뉴5-3</a></li>
+                <li><a href="">메뉴5-4</a></li>
+                <li><a href="">메뉴5-5</a></li>
+            </ul>
+        </div>
+    </nav>
 </body>
 
 </html>

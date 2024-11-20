@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <script>
-      
+        window.onload = () => {
+            let id = document.querySelector('#id');
+            let pass = document.querySelector('#pass');
+            document.querySelector('#frm').onsubmit = e => {
+                // alert(`submit 이벤트 발생`);
+                
+                // 아이디와 암호 중 하나라도 입력하지 않으면 전송이 되지 않게끔 처리
+                if(id.value.length == 0 || pass.value.length == 0){
+                    alert(`아이디 또는 암호는 반드시 입력해야 합니다.`);
+                    // if(id.value.length == 0) id.focus();
+                    // if(pass.value.length == 0) pass.focus();
+                    id.focus();
+                    e.preventDefault();
+                }
+
+                
+            }
+        }
     </script>
 </head>
+
 <body>
-    <form action="" id="frm">
+    <form action="" id="frm" method="post">
         <input type="text" id="id" name="id"><br>
         <input type="password" id="pass" name="pass"><br>
         <button>로그인</button>
     </form>
 </body>
+
 </html>

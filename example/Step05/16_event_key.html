@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <script>
-      
+        window.onload = () => {
+            let txt = document.querySelector('#txt');
+            let area = document.querySelector('#area');
+
+            txt.onkeydown = (e) => { // 누른 순간 누른 키
+                console.log(`현재 누른 키보드키 : ${e.keyCode}`);
+            }
+
+            txt.onkeypress = (e) => { // 계속 누르고 있는 키
+                console.log(`현재 누르고 있는 키보드키 : ${e.keyCode}`);
+            }
+
+            txt.onkeyup = (e) => { // 눌렀다가 땐 키보드 키
+                console.log(`현재 눌렀다가 뗀 키보드키 : ${e.keyCode}`);
+                area.innerHTML = `현재 눌렀다가 뗀 키보드키 : ${e.keyCode}`;
+            }
+        }
     </script>
 </head>
+
 <body>
     <input type="text" id="txt">
     <div id="area"></div>
 </body>
+
 </html>

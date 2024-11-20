@@ -6,7 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <script>
-    
+        window.onload = () => {
+            document.querySelector('#sel').onchange = function() {
+                console.log(this.value);
+            }
+
+            document.querySelector('#txt').onchange = (e) => {// 입력이 완료 된 후 포커스가 풀리면 입력된 값 확인할 수 있음
+                console.log(e.target.value); 
+            }
+
+            document.querySelector('#txt').onkeyup = (e) => { // 입력때 마다 입력된 값을 확인할 수있다
+                console.log(e.target.value);
+            }
+
+            document.querySelector('#chk').onchange = e => {
+                console.log(`checkbox change event 발생`);
+                console.log(`${e.target.checked}`);
+            }
+        }
     </script>
 </head>
 
@@ -18,7 +35,8 @@
         <option value="3">데이터3</option>
         <option value="4">데이터4</option>
     </select>
-    <input type="text" id="txt">
+    <input type="text" id="txt"><br>
+    <input type="checkbox" id="chk">
 </body>
 
 </html>

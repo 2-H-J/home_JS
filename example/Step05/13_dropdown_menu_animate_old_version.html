@@ -11,14 +11,183 @@
             padding: 0;
         }
 
+        nav {
+            width: 1200px;
+            margin: 100px auto;
+            border: 1px solid black;
+        }
+
+        nav ul {
+            list-style-type: none;
+        }
+
+        #main_menu {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        #main_menu li,
+        .sub_menu {
+            width: calc(100% / 5);
+        }
+
+        #main_menu a:link,
+        #main_menu a:visited {
+            display: inline-block;
+            width: 100%;
+            border: 1px solid black;
+            line-height: 20px;
+            font-size: 20px;
+            padding: 20px 0px;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            box-sizing: border-box;
+        }
+
+        #sub_menu_container {
+            display: flex;
+            flex-flow: row nowrap;
+            height: 0px;
+            overflow: hidden;
+            animation-duration: 0s;
+            animation-name: slideout;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+
+        }
+
+        .sub_menu a:link,
+        .sub_menu a:visited {
+            display: inline-block;
+            width: 100%;
+            border: 1px solid black;
+            line-height: 16px;
+            font-size: 16px;
+            padding: 16px 0px;
+            text-align: center;
+            text-decoration: none;
+            color: purple;
+            box-sizing: border-box;
+        }
+
+        #sub_menu_container.active {
+            animation-duration: 1s;
+            animation-name: slidein;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        #sub_menu_container.close {
+            animation-duration: 1s;
+            animation-name: slideout;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes slidein {
+            from {
+                height: 0px;
+            }
+
+            to {
+                height: 250px;
+            }
+        }
+
+        @keyframes slideout {
+            from {
+                height: 250px;
+            }
+
+            to {
+                height: 0px;
+            }
+        }
     </style>
     <script>
-       
+        window.onload = () => {
+            const animation = document.querySelector("#sub_menu_container");
+
+            let flag = false;
+
+            animation.addEventListener("animationstart", () => {
+                console.log('animation started');
+                flag = true;
+            });
+
+
+            animation.addEventListener("animationend", () => {
+                console.log('animation ended');
+                flag = false;
+            });
+
+            document.querySelector('nav').addEventListener("mouseenter", () => {
+                if (flag) return;
+                animation.classList.add('active');
+                animation.classList.remove('close');
+            });
+            document.querySelector('nav').addEventListener("mouseleave", () => {
+                if (flag) return;
+                animation.classList.remove('active');
+                animation.classList.add('close');
+            });
+            document.querySelector('nav').addEventListener("click", () => {
+                if (flag) return;
+                animation.classList.remove('active');
+                animation.classList.add('close');
+            });
+        }
     </script>
 </head>
 
 <body>
-    
+    <nav>
+        <ul id="main_menu">
+            <li><a href="#">메뉴1</a></li>
+            <li><a href="#">메뉴2</a></li>
+            <li><a href="#">메뉴3</a></li>
+            <li><a href="#">메뉴4</a></li>
+            <li><a href="#">메뉴5</a></li>
+        </ul>
+        <div id="sub_menu_container" class="">
+            <ul class="sub_menu">
+                <li><a href="#">메뉴1-1</a></li>
+                <li><a href="#">메뉴1-2</a></li>
+                <li><a href="#">메뉴1-3</a></li>
+                <li><a href="#">메뉴1-4</a></li>
+                <li><a href="#">메뉴1-5</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="#">메뉴2-1</a></li>
+                <li><a href="#">메뉴2-2</a></li>
+                <li><a href="#">메뉴2-3</a></li>
+                <li><a href="#">메뉴2-4</a></li>
+                <li><a href="#">메뉴2-5</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="#">메뉴3-1</a></li>
+                <li><a href="#">메뉴3-2</a></li>
+                <li><a href="#">메뉴3-3</a></li>
+                <li><a href="#">메뉴3-4</a></li>
+                <li><a href="#">메뉴3-5</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="#">메뉴4-1</a></li>
+                <li><a href="#">메뉴4-2</a></li>
+                <li><a href="#">메뉴4-3</a></li>
+                <li><a href="#">메뉴4-4</a></li>
+                <li><a href="#">메뉴4-5</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="#">메뉴5-1</a></li>
+                <li><a href="#">메뉴5-2</a></li>
+                <li><a href="#">메뉴5-3</a></li>
+                <li><a href="#">메뉴5-4</a></li>
+                <li><a href="#">메뉴5-5</a></li>
+            </ul>
+        </div>
+    </nav>
 </body>
 
 </html>
