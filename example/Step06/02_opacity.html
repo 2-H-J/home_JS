@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>투명도</title>
     <script>
-      
+        // range를 선택해서 값이 바뀌었을때 이미지 태그의 opacity값을 변경
+        // 예> range 값이 1일 경우 opacity 값은 0.1 (나누기 100한결과)
+        window.onload = () => {
+            // document.querySelector('input').onchange = function() {
+            //     console.log(this.value);
+                
+            // }
+            document.querySelector('#val').onchange = (e) => {
+                document.querySelector('img').style.opacity = e.target.value / 100;
+            }
+        }
     </script>
 </head>
+
 <body>
-    <input type="range" id="val" min="0" max="10" value="10">
+    <input type="range" id="val" min="0" max="100" value="100">
     <hr>
-    <img src="image/1.jpg">
+    <img src="/Step06/img/8.webp">
 </body>
+
 </html>

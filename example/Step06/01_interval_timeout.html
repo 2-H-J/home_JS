@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>timeout, interval</title>
     <script>
-        
+        window.onload = () => {
+            // 페이지 로드 완료 후 실행
+
+            // 현재 시간 확인 (디버깅용 로그)
+            // console.log(`${new Date().toLocaleString()}`); 
+
+            // setTimeout: 일정 시간이 지난 후에 한 번 실행
+            let timeout_id = setTimeout(function () {
+                console.log(`5초 뒤에 실행 - ${new Date().toLocaleString()} - Timeout`);
+            }, 5000); // 5초 후 실행
+            console.log(timeout_id, '<-- timeout_id'); // timeout_id 값 확인 (고유 ID)
+
+            // setInterval: 지정한 시간마다 반복 실행
+            let interval_id = setInterval(function () {
+                console.log(`3초 마다 실행 - ${new Date().toLocaleString()} - Interval`);
+            }, 3000); // 3초마다 반복 실행
+            console.log(interval_id, '<-- interval_id'); // interval_id 값 확인 (고유 ID)
+
+            // 인터벌 정지 버튼 이벤트
+            document.querySelector('#inter').onclick = (e) => {
+                // clearInterval을 호출하여 interval_id에 해당하는 반복 작업 중지
+                clearInterval(interval_id);
+                console.log('3초마다 실행하는 Interval이 중지되었습니다.');
+            };
+
+            // 타임아웃 정지 버튼 이벤트
+            document.querySelector('#out').onclick = (e) => {
+                // clearTimeout을 호출하여 timeout_id에 해당하는 예약 작업 중지
+                clearTimeout(timeout_id);
+                console.log('5초 뒤에 실행 예정이었던 Timeout이 취소되었습니다.');
+            };
+        };
+
     </script>
 </head>
+
 <body>
     <button id="inter">Interval Stop</button>
     <button id="out">Timeout Stop</button>
 </body>
+
 </html>

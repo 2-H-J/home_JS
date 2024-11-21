@@ -7,114 +7,345 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <style>
+        /* 모든 HTML 요소의 기본 여백과 패딩 제거 */
         * {
             margin: 0;
             padding: 0;
         }
 
+        /* 컨테이너 스타일: 중앙 정렬, 너비 700px, 내부 여백 40px, 테두리 설정 */
         .container {
             width: 700px;
             margin: 0 auto;
+            /* 수평 중앙 정렬 */
             padding: 40px;
+            /* 내부 여백 */
             border: 1px solid #d1d1d1;
+            /* 연한 회색 테두리 */
         }
 
+        /* h1 제목 스타일: 중앙 정렬, 상하 여백 추가 */
         h1 {
             text-align: center;
+            /* 텍스트 중앙 정렬 */
             margin: 20px 0px;
+            /* 위아래 여백 */
         }
 
+        /* form 내 ul 요소의 스타일: 기본 불릿 제거 */
         form>ul {
             list-style-type: none;
+            /* 기본 불릿 제거 */
         }
 
+        /* form 내 ul의 li 요소 스타일: 위쪽 여백 추가 */
         form>ul>li {
             margin-top: 10px;
+            /* 위쪽 여백 */
         }
 
+        /* form 내 중첩 ul 스타일: 디스크 불릿 적용, 회색 텍스트 색상 */
         form>ul>ul {
             list-style-type: disc;
+            /* 디스크 모양 불릿 적용 */
             margin-top: 5px;
+            /* 위쪽 여백 */
             padding-left: 40px;
+            /* 왼쪽 들여쓰기 */
             color: gray;
+            /* 회색 텍스트 색상 */
         }
 
+        /* label 스타일: 텍스트를 굵게 표시 */
         label {
             font-weight: bold;
+            /* 굵은 텍스트 */
         }
 
+        /* 하단 테두리를 설정하는 클래스 */
         .border_bottom {
             border-bottom: 2px solid #c4c4c4;
+            /* 하단에 두꺼운 회색 테두리 */
         }
 
+        /* input 스타일: 보더 제거, 크기 설정, 큰 텍스트 */
         input {
             border: none;
+            /* 기본 보더 제거 */
             outline: none;
+            /* 포커스 시 외곽선 제거 */
             height: 50px;
+            /* 높이 50px */
             width: 80%;
+            /* 너비 80% */
             font-size: 20px;
+            /* 폰트 크기 20px */
         }
 
+        /* 보조 텍스트(sub_txt) 스타일 */
         .sub_txt {
             width: 20%;
+            /* 너비 20% */
             font-size: 20px;
+            /* 폰트 크기 20px */
             font-weight: bold;
+            /* 굵은 텍스트 */
             box-sizing: border-box;
+            /* 전체 박스 크기 포함 계산 */
             text-align: right;
+            /* 텍스트 오른쪽 정렬 */
             color: gray;
+            /* 회색 텍스트 */
             display: inline-block;
+            /* 인라인 블록 배치 */
         }
 
+        /* gcode 입력 필드 스타일 */
         #gcode {
             width: 100px;
+            /* 너비 100px */
             height: 50px;
+            /* 높이 50px */
             box-sizing: border-box;
+            /* 전체 크기 계산 포함 */
             border: none;
+            /* 기본 보더 제거 */
             font-size: 20px;
+            /* 폰트 크기 20px */
             outline: none;
+            /* 포커스 외곽선 제거 */
             border-right: 1px solid #c4c4c4;
+            /* 오른쪽 회색 테두리 */
         }
 
+        /* 인증번호 전송 버튼 스타일 */
         .btn_send_no {
             width: 250px;
+            /* 버튼 너비 250px */
             height: 50px;
+            /* 버튼 높이 50px */
             background-color: white;
+            /* 배경색 흰색 */
             border: 1px solid #c4c4c4;
+            /* 연한 회색 테두리 */
             border-radius: 25px;
+            /* 둥근 모서리 */
         }
 
+        /* 인증번호 전송 버튼 호버 시 스타일 */
         .btn_send_no:hover {
             background-color: #d4d4d4;
+            /* 연한 회색 배경 */
         }
 
+        /* 인증번호 전송 버튼 클릭(active) 시 스타일 */
         .btn_send_no:active {
             background-color: white;
+            /* 배경색 흰색 */
         }
 
+        /* 다음 버튼 스타일 */
         .btn_next {
             width: 100%;
+            /* 버튼 너비 100% */
             height: 50px;
+            /* 버튼 높이 50px */
             background-color: #d4d4d4;
+            /* 연한 회색 배경 */
             border-radius: 10px;
+            /* 둥근 모서리 */
             border: none;
+            /* 보더 제거 */
         }
 
+        /* 다음 버튼 호버 시 스타일 */
         .btn_next:hover {
             background-color: #ffe606;
+            /* 밝은 노란색 배경 */
         }
 
+        /* 유효성 검사 통과 시 스타일 */
         .true {
             color: blue;
+            /* 파란색 텍스트 */
             font-weight: bold;
+            /* 굵은 텍스트 */
         }
 
+        /* 유효성 검사 실패 시 스타일 */
         .false {
             color: red;
+            /* 빨간색 텍스트 */
             font-weight: bold;
+            /* 굵은 텍스트 */
         }
     </style>
-     <script>
-        
+
+    <script>
+        // ID----------------------------------------------------------------------------------------------------------
+        // 아이디 값이 정상인지 체크하는 함수
+        // 1. 글자수 8 ~ 20글자 사이
+        // 2. 숫자 알파벳 혼합(숫자+알파벳이 반드시 한개씩은 들어가야 됨)
+        // 규칙에 만족하면 true 리턴, 만족하지 못하면 false 리턴
+        function checkId() {
+            let id = document.querySelector('#id'); // ID 입력 필드 선택
+
+            /*
+                -정규표현식 설명-
+                ^: 문자열 시작
+                (?=.*[A-Za-z]): 적어도 하나의 알파벳 포함
+                (?=.*\d): 적어도 하나의 숫자 포함
+                [A-Za-z\d]{8,20}: 알파벳, 숫자로 구성된 8~20자 길이 문자열
+                $: 문자열 끝
+            */
+            let reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
+
+            if (reg.test(id.value)) { // 조건에 부합하면
+                document.querySelector('.id_result').innerHTML = '사용이 가능한 아이디 입니다.';
+                document.querySelector('.id_result').classList.add('true');
+                document.querySelector('.id_result').classList.remove('false');
+                return true;
+            } else { // 조건에 부합하지 않으면
+                document.querySelector('.id_result').innerHTML =
+                    '아이디는 8자 이상 20자 이하로 알파벳 숫자 조합으로 입력하세요.';
+                document.querySelector('.id_result').classList.add('false');
+                document.querySelector('.id_result').classList.remove('true');
+                return false;
+            }
+
+            // document.querySelector('.id_result').innerHTML = reg.test(id.value);
+            // console.log(reg.test(id.value));
+        }
+
+
+        // PASSWORD--------------------------------------------------------------------------------------------------
+        // 1. 두번 입력한 암호가 서로 일치하는지
+        // 2. 암호는 8글자 이상 32글자 이하만 허용
+        // 3. 특수문자, 대문자, 소문자, 숫자가 각각 1글자씩 반드시 포함
+        // 4. 암호가 일치하는지 올바른 형태인지 결과를 체크해서 하단에 메세지를 띄움
+        function checkPassword() {
+            let pass = document.querySelector('#pass'); // 비밀번호 입력 필드 선택
+            let pass_chk = document.querySelector('#pass_chk'); // 확인용 비밀번호 필드 선택
+
+            /*
+                -정규표현식 설명-
+                ^: 문자열 시작
+                (?=.*[A-Z]): 적어도 하나의 대문자 포함
+                (?=.*[a-z]): 적어도 하나의 소문자 포함
+                (?=.*\d): 적어도 하나의 숫자 포함
+                (?=.*[~!@#$%^&*]): 적어도 하나의 특수문자 포함
+                [A-Za-z\d~!@#$%^&*]{8,32}: 지정된 문자로 8~32자 길이 문자열
+                $: 문자열 끝
+            */
+            let reg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[~!@#$%^&*])[A-Za-z\d~!@#$%^&*]{8,32}$/;
+
+            if (!reg.test(pass.value)) { // 비밀번호 형식이 올바르지 않은 경우
+                document.querySelector('.pass_result').innerHTML =
+                    '암호는 대소문자, 숫자, 특수문자를 1글자씩 포함해야 합니다, 8 ~ 32글자 사이로 입력하세요.';
+                document.querySelector('.pass_result').classList.add('false');
+                document.querySelector('.pass_result').classList.remove('true');
+                return false;
+            }
+            if (pass.value != pass_chk.value) { // 비밀번호와 확인용 비밀번호가 다를 경우
+                document.querySelector('.pass_result').innerHTML =
+                    '입력하신 암호가 일치(동일)하지 않습니다.';
+                document.querySelector('.pass_result').classList.add('false');
+                document.querySelector('.pass_result').classList.remove('true');
+                return false;
+            }
+
+            // 비밀번호가 일치하고 형식이 올바른 경우
+            document.querySelector('.pass_result').innerHTML = '암호가 일치 합니다.';
+            document.querySelector('.pass_result').classList.add('true');
+            document.querySelector('.pass_result').classList.remove('false');
+            return true;
+        }
+
+
+        // NICKNAME-----------------------------------------------------------------------------------------------
+        // 닉네임 기능
+        // 1. 닉네임은 20글자까지만 입력이 가능하게끔 처리
+        // 2. 입력한 글자개수를 0/20 형식으로 sub_txt에 넣음
+        // 3. 최소한 한글자는 입력해야함
+        // 4. 특수문자 적용 안되게
+        function checkNick() {
+            let nick = document.querySelector('#nick'); // 닉네임 입력 필드 선택
+
+            /*
+                -정규표현식 설명-
+                ^: 문자열 시작
+                [A-Za-z가-힣\d]: 영문, 한글, 숫자만 허용
+                {1,20}: 1 ~ 20자 길이 제한
+                $: 문자열 끝
+            */
+            let reg = /^[A-Za-z가-힣\d]{1,20}$/;
+
+            // 최대 20글자까지만 입력 가능
+            nick.value = nick.value.substr(0, 20);
+            // 입력한 글자 수를 실시간으로 표시
+            nick.nextElementSibling.innerHTML = `${nick.value.length}/20`;
+
+            if (!reg.test(nick.value)) { // 닉네임 형식이 올바르지 않은 경우
+                nick.classList.add('false');
+                nick.classList.remove('true');
+                return false;
+            }
+
+            // 닉네임 형식이 올바른 경우
+            nick.classList.add('true');
+            nick.classList.remove('false');
+            return true;
+        }
+
+        // TEL-------------------------------------------------------------------------------------------------
+        function checkTel() {
+            // HTML에서 id가 'tel'인 입력 필드를 선택
+            let tel = document.querySelector('#tel');
+
+            /*
+                - 정규표현식 설명 -
+                ^: 문자열의 시작
+                01: 전화번호는 '01'로 시작
+                ([0|1|6|7|8|9]): 두 번째 자리는 0, 1, 6, 7, 8, 9 중 하나
+                \d{3,4}: 3자리 또는 4자리 숫자
+                \d{4}: 4자리 숫자
+                $: 문자열의 끝
+            */
+            let reg = /^01([0|1|6|7|8|9])\d{3,4}\d{4}$/;
+
+            // 입력된 값이 정규표현식과 일치하는 경우
+            if (reg.test(tel.value)) {
+                // 클래스 'true'를 추가하고 'false'를 제거 (유효한 입력)
+                tel.classList.add('true');
+                tel.classList.remove('false');
+                return true;
+            }
+            // 입력이 유효하지 않을 경우
+            // 클래스 'false'를 추가하고 'true'를 제거 (유효하지 않은 입력)
+            tel.classList.add('false');
+            tel.classList.remove('true');
+            return false;
+        }
+
+        // ----------------------------------------------------------------------------------------------------
+        window.onload = () => {
+            // 각각의 입력 필드에 실시간 유효성 검사를 연결
+            document.querySelector('#id').onkeyup = checkId; // ID 입력 시 실시간 검사
+            document.querySelector('#pass').onkeyup = checkPassword; // 비밀번호 입력 시 실시간 검사
+            document.querySelector('#pass_chk').onkeyup = checkPassword; // 확인용 비밀번호 입력 시 검사
+            document.querySelector('#nick').onkeyup = checkNick; // 닉네임 입력 시 실시간 검사
+            document.querySelector('#tel').onkeyup = checkTel; // 전화번호 입력 시 실시간 검사
+
+            // 폼 제출 시 유효성 검사
+            document.querySelector('#frm').onsubmit = (e) => {
+                // ID, 비밀번호, 닉네임, 전화번호 중 하나라도 유효하지 않으면 폼 제출 중단
+                if (!(checkId() && checkPassword() && checkNick() && checkTel())) {
+                    e.preventDefault(); // 폼 제출 중단
+                    alert('잘못된 데이터가 있습니다.\n다시한번 입력하신 데이터를 확인해 보세요');
+                }
+            };
+        };
+
     </script>
 </head>
 
@@ -144,7 +375,7 @@
                 <li class="pass_result"></li>
                 <li><label for="nick">닉네임</label></li>
                 <li class="border_bottom">
-                    <input type="text" id="nick" placeholder="닉네임을 입력하세요"><span class="sub_txt">0/20</span>
+                    <input type="text" id="nick" placeholder="닉네임(한글,영문,숫자)을 작성하세요"><span class="sub_txt">0/20</span>
                 </li>
                 <li><label for="tel">전화번호</label></li>
                 <li class="border_bottom">

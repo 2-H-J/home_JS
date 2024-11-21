@@ -1,21 +1,87 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gallery</title>
     <style>
-        *{
-            margin:0;
+        * {
+            margin: 0;
             padding: 0;
         }
-      
+
+        .thumnail_container {
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid black;
+            position: relative;
+
+        }
+
+        .main_img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .thumnail {
+            width: 800px;
+            font-size: 0px;
+            /* border:1px solid black; */
+        }
+
+        .thumnail img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .thumnail_bar {
+            width: 400px;
+            margin: 0 auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        .left_arrow,
+        .right_arrow {
+            position: absolute;
+            bottom: 6px;
+        }
+
+        .left_arrow {
+            left: 0px;
+        }
+
+        .right_arrow {
+            right: 0px;
+        }
     </style>
     <script>
-     
+
     </script>
 </head>
+
 <body>
-   
+    <div class="thumnail_container">
+        <img src="img/1.webp" class="main_img">
+        <div class="thumnail_bar">
+            <div class="thumnail">
+                <img src="img/1.webp" alt="">
+                <img src="img/2.webp" alt="">
+                <img src="img/3.webp" alt="">
+                <img src="img/4.webp" alt="">
+                <img src="img/5.webp" alt="">
+                <img src="img/6.webp" alt="">
+                <img src="img/7.webp" alt="">
+                <img src="img/8.webp" alt="">
+                <img src="img/9.webp" alt="">
+                <img src="img/10.webp" alt="">
+            </div>
+        </div>
+        <a class="left_arrow"><img src="img/left_arrow.png" alt=""></a>
+        <a class="right_arrow"><img src="img/right_arrow.png" alt=""></a>
+    </div>
 </body>
+
 </html>

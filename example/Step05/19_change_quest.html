@@ -6,31 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <script>
-        // function createInput() {
-        //     // <input> 요소 생성
-        //     const input = document.createElement('input');
-
-        //     // 생성한 input의 속성 설정
-        //     input.type = 'text'; // 타입 설정
-        //     input.placeholder = 'Enter text'; // 플레이스홀더 추가
-        //     input.id = 'newInput'; // id 설정 (선택 사항)
-
-        //     // 부모 요소 선택
-        //     const parent = document.querySelector('#container');
-
-        //     // 부모 요소에 input 추가
-        //     parent.appendChild(input);
-        // }
+        // HTML 문서가 완전히 로드된 후 실행될 코드를 작성합니다.
         window.onload = () => {
 
-            document.querySelector('#host').onchange = function() {
-                console.log(this.value);
-                if(this.value == 4){
-                    
-                }
-            }
+            // HTML 요소 중 id가 'host'인 요소에 대해 'change' 이벤트를 감지합니다.
+            document.querySelector('#host').addEventListener('change', (e) => {
+                // 'change' 이벤트가 발생한 대상의 값을 확인합니다.
+                // 예를 들어, 드롭다운이나 선택 입력 필드에서 사용자가 선택한 값이 변경되었을 때 실행됩니다.
+                // console.log(e.target.value); // (주석 처리된 코드) 선택한 값이 콘솔에 출력됩니다.
 
-        }
+                // 사용자가 선택한 값이 '4'인지 확인합니다.
+                // **주의:** 비교 시 값과 타입 모두를 체크하지 않기 때문에 문자열 '4'로 비교합니다.
+                if (e.target.value == '4') { // 선택한 값이 문자열 '4'와 동일한 경우 실행됩니다.
+                    // id가 'area'인 요소 내부에 새로운 텍스트 입력 필드를 동적으로 추가합니다.
+                    document.querySelector('#area').innerHTML = `<input type='text' id='custom_host'>`;
+                } else {
+                    // 선택한 값이 '4'가 아닌 경우, id가 'area'인 요소 내부의 내용을 비웁니다.
+                    document.querySelector('#area').innerHTML = '';
+                }
+            });
+
+        };
     </script>
 </head>
 
@@ -44,7 +40,6 @@
         <option value="4">직접입력</option>
     </select>
     <span id="area"></span>
-    <div id="container"></div>
 </body>
 
 </html>
