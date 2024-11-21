@@ -29,6 +29,7 @@
             width: 800px;
             font-size: 0px;
             /* border:1px solid black; */
+            transition: all 0.5s;
         }
 
         .thumnail img {
@@ -58,6 +59,43 @@
         }
     </style>
     <script>
+        window.onload = () => {
+            // 섬네일 이미지 클릭 시 메인 이미지를 변경하기 위한 코드
+            // 1. 모든 섬네일 이미지를 선택
+            // 2. 각 섬네일에 클릭 이벤트를 추가
+            // 3. 클릭 시 해당 섬네일 이미지를 메인 이미지로 변경
+            document.querySelectorAll('.thumnail img').forEach((obj) => {
+                obj.onclick = (e) => {
+                    console.log(e.target.src); // 클릭한 이미지의 src 속성 로그 출력
+                    document.querySelector('.main_img').src = e.target.src; // 메인 이미지의 src를 클릭한 이미지의 src로 변경
+                }
+            });
+
+            // 슬라이드 바 관련 변수 초기화
+            let idx = 0; // 현재 슬라이드 위치를 나타내는 인덱스
+            let thumnailWidth = document.querySelector('.thumnail').scrollWidth; // 섬네일 전체 너비
+            let thumnailBarWidth = document.querySelector('.thumnail_bar').clientWidth; // 섬네일을 감싸는 바의 너비
+
+            // 왼쪽 화살표 클릭 시 섬네일을 왼쪽으로 이동
+            document.querySelector('.left_arrow').onclick = (e) => {
+                // 더 이상 오른쪽으로 갈 수 없는 경우 함수 종료
+                if (idx * 80 + thumnailBarWidth == thumnailWidth)
+                    return;
+
+                idx++; // 인덱스를 증가시켜 다음 슬라이드로 이동
+                document.querySelector('.thumnail').style.marginLeft = `${-80 * idx}px`; // 섬네일의 margin-left 값을 변경하여 이동
+            }
+
+            // 오른쪽 화살표 클릭 시 섬네일을 오른쪽으로 이동
+            document.querySelector('.right_arrow').onclick = (e) => {
+                // 더 이상 왼쪽으로 갈 수 없는 경우 함수 종료
+                if (idx == 0)
+                    return;
+
+                idx--; // 인덱스를 감소시켜 이전 슬라이드로 이동
+                document.querySelector('.thumnail').style.marginLeft = `${-80 * idx}px`; // 섬네일의 margin-left 값을 변경하여 이동
+            }
+        }
 
     </script>
 </head>
@@ -81,6 +119,7 @@
         </div>
         <a class="left_arrow"><img src="img/left_arrow.png" alt=""></a>
         <a class="right_arrow"><img src="img/right_arrow.png" alt=""></a>
+
     </div>
 </body>
 
