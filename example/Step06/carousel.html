@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel</title>
+  <style>
+    *{
+      margin:0;
+      padding: 0;
+    }
+    .container{
+      width: 1300px;
+      margin: 0 auto;
+      /* border:1px solid red; */
+    }
+    .carousel{
+      width: 100%;
+      border:1px solid black;
+      position: relative;
+      font-size: 0px;
+      overflow: hidden;
+    }
+    .item_container{
+      width: calc(100% * 4);
+      display: flex;
+      flex-flow: row nowrap;
+      list-style-type: none;
+    }
+    .item_container img{
+      width: 100%;
+    }
+    .left_arrow, .right_arrow{
+      width: 80px;
+      height: 80px;
+      background-color: transparent;
+      border:none;
+      background-size: 100% 100%;
+      position: absolute;
+      top:calc(50% - 40px);
+    }
+    .left_arrow{
+      background-image: url('img/left_arrow.png');
+      left: 0px;
+    }
+    .right_arrow{
+      background-image: url('img/right_arrow.png');
+      right: 0px;
+    }
+    .indicator{
+      list-style-type: none;
+      display: flex;
+      flex-flow: row nowrap;
+      gap:10px;
+      position: absolute;
+      bottom:30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .indicator li{
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 10px;
+    }
+    .indicator li.active{
+      background-color: gray;
+      box-shadow: 0px 0px 10px 10px white; 
+    }
+  </style>
+  <script>
+    function settingIndicator(idx){
+      document.querySelectorAll('.indicator li').forEach((obj, index) => {
+          obj.classList.toggle('active', idx === index);
+        })
+    }
+    window.onload = () => {
+      const left_arrow = document.querySelector('.left_arrow');
+      const right_arrow = document.querySelector('.right_arrow');
+      const item_container = document.querySelector('.item_container');
+      const carousel = document.querySelector('.carousel');
+      const carousel_width = carousel.clientWidth;
+      console.log(carousel.parentElement.clientWidth);
+      //캐러셀 아이템 길이값 지정 - flex로 배치했기때문에 애니메이션 중 가로길이가 늘어나는 문제를 해결
+      document.querySelectorAll('.item_container li').forEach((obj) => {
+        obj.style.width = carousel.parentElement.clientWidth + 'px';
+      })
+
+      let left_animation = {
+        marginLeft : `-${carousel_width}px`
+      }
+      let animate_options = {
+        duration : 1000,
+        fill : 'backwards',
+        iterations : 1,
+        easing : 'linear'
+      }
+
+      let idx = 0;
+      let flag = false;
+      left_arrow.onclick = () => {
+        //애니메이션 실행 중이면 실행 안되게끔 처리
+        if(flag) return;
+        flag = true;
+        //인디케이터 설정
+        idx = ++idx % 4;
+        settingIndicator(idx);
+        //item_container 안에 있는 첫번째 아이템을 왼쪽으로 이동
+        item_container.firstElementChild.animate(left_animation,animate_options).onfinish = () => {
+          item_container.append(item_container.firstElementChild);
+          flag = false;
+        }
+      };
+      let right_animation = {
+        marginLeft : '0px'
+      };
+      right_arrow.onclick = () => {
+        if(flag) return;
+        flag = true;
+        idx--;
+        if(idx < 0) idx = 3;
+        settingIndicator(idx);
+
+        // item_container 안에 있는 마지막 아이템을 맨 앞으로 이동
+        item_container.prepend(item_container.lastElementChild);
+        // 미리 margin-left -1300px로 지정
+        item_container.firstElementChild.style.marginLeft = `-${carousel_width}px`;
+        // margin-left을 0px 로 지정해서 애니메이션 실행
+        item_container.firstElementChild.animate(right_animation,animate_options).onfinish = () =>{
+          // margin-left도 다시 0px로 변경
+          item_container.firstElementChild.style.marginLeft = `0px`;
+          flag = false;
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="carousel">
+      <ul class="item_container">
+        <li><img src="img/main_1.webp" alt=""></li>
+        <li><img src="img/main_2.webp" alt=""></li>
+        <li><img src="img/main_3.webp" alt=""></li>
+        <li><img src="img/main_4.webp" alt=""></li>
+      </ul>
+      <button type="button" class="left_arrow"></button>
+      <button type="button" class="right_arrow"></button>
+      <ul class="indicator">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

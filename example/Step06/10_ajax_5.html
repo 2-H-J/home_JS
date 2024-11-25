@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax5</title>
+    <script>
+
+        function RequestInfo(search) {
+            let url = 'http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=Key_value&movieNm=' + search;
+            console.log(url);
+            fetch(url).then((response) => {
+                //호출 결과를 받는 부분
+                if (!response.ok) {
+                    throw new Error(`HTTP error : ${response.stateus}`);
+                }
+                return response.json();
+            }).then((json) => {
+                //데이터를 받아서 화면에 출력 처리하는 부분
+                console.log(json);
+
+                let tag = '';
+                tag += json.movieListResult.movieList.reduce((acc, cur, idx) => acc + `<h2>${cur.movieNm}</h2><p>개봉년도 : ${cur.prdtYear
+                    } / 장르 : ${cur.repGenreNm}</p>`, '');
+
+                document.querySelector('.result').innerHTML = tag;
+            }).catch((error) => {
+                document.querySelector('.result').innerHTML = '서버 호출 오류';
+                console.log(error);
+            });
+
+        }
+        window.onload = () => {
+            document.querySelector('button').onclick = () => {
+                //ajax를 이용하여 openweather의 날씨 정보를 읽어옴
+                RequestInfo(document.querySelector("#txt").value);
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <input type="text" id="txt">
+    <button>검색하기</button>
+    <div class="result"></div>
+</body>
+
+</html>

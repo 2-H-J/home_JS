@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ajax</title>
+    <title>ajax4</title>
     <script>
-       
+        window.onload = () => {
+            // 페이지가 모두 로드되었을 때 실행되는 함수
+            document.querySelector('button').onclick = () => {
+
+                let url = 'http://nam3324.synology.me:32813/search/blog?query=' + document.querySelector('#txt').value;
+
+                // Fetch API를 사용하여 데이터 요청
+                fetch(url)
+                    .then((result) => { // 서버로부터 데이터를 성공적으로 받은 후 처리하는 부분
+                        console.log(result); // 응답 객체 전체를 콘솔에 출력
+                        if (!result.ok)  // 응답 상태가 정상적이지 않을 경우 에러를 발생시킴
+                            throw new Error(`HTTP error - ${result.status}`); // 상태 코드에 따른 에러 메시지를 출력
+
+                        return result.json(); // 응답 데이터를 JSON 형식으로 변환하여 반환
+                    })
+                    .then((json) => { // JSON 변환이 완료된 후 데이터를 이용하여 처리
+                        console.log(json);
+                        //result에 아래 내용들 뽑아서 출력
+                        let tag = '';
+                        json.items.forEach(obj => {
+                            tag += `<h3><a href='${obj.link}'>${obj.title}</a></h3>`;
+                            tag += `<p>${obj.description}</p>`;
+
+                        });
+                        document.querySelector('.result').innerHTML = tag;
+                    })
+                    .catch((error) => { // 데이터 요청에 실패했을 때 처리하는 부분
+                        console.log(error); // 에러 메시지를 콘솔에 출력
+                    });
+            }
+        }
     </script>
 </head>
+
 <body>
     <input type="text" id="txt">
     <button>검색하기</button>
     <div class="result"></div>
 </body>
+
 </html>

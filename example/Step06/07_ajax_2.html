@@ -6,7 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ajax</title>
     <script>
-      
+        window.onload = () => {  // 페이지가 모두 로드되었을 때 실행되는 함수
+
+            document.querySelector('button').onclick = () => { // 버튼 클릭 시 실행되는 함수
+
+                // 1. OpenWeatherMap API URL 설정
+                // OpenWeatherMap의 API를 호출하여 날씨 정보를 가져오기 위한 URL을 설정
+                // id=1835848는 특정 도시(예: 서울)의 ID이며, appid는 인증을 위한 API 키임. units=Metric은 섭씨 온도로 데이터를 요청
+                let url = 'https://api.openweathermap.org/data/2.5/weather?id=1835848&appid=Key_value&units=Metric';
+
+                // Fetch API를 사용하여 데이터 요청
+                fetch(url) // 설정한 URL을 통해 날씨 데이터를 요청하는 부분
+                    .then((result) => { // 서버로부터 데이터를 성공적으로 받은 후 처리하는 부분
+                        console.log(result); // 응답 객체 전체를 콘솔에 출력
+                        if (!result.ok) { // 응답 상태가 정상적이지 않을 경우 에러를 발생시킴
+                            throw new Error(`HTTP error - ${result.status}`); // 상태 코드에 따른 에러 메시지를 출력
+                        }
+                        return result.json(); // 응답 데이터를 JSON 형식으로 변환하여 반환
+                    })
+                    .then((json) => { // JSON 변환이 완료된 후 데이터를 이용하여 처리
+                        console.log(json); // 변환된 JSON 데이터를 콘솔에 출력
+                        // 결과 출력 부분
+
+                        let tag = ''; // 결과를 저장할 변수 초기화
+
+                        // 도시명 추가
+                        tag += `<p>${json.name}</p>`; // 응답에서 받은 도시 이름을 출력 태그에 추가
+
+                        // 현재 날씨 상태 추가 (맑음, 흐림 등)
+                        tag += `<p>현재날씨 : ${json.weather[0].main}</p>`; // 현재 날씨 상태를 출력 태그에 추가
+
+                        // 최고 온도 추가
+                        tag += `<p>최고온도 : ${json.main.temp_max}</p>`; // 최고 온도를 출력 태그에 추가
+
+                        // 최저 온도 추가
+                        tag += `<p>최저온도 : ${json.main.temp_min}</p>`; // 최저 온도를 출력 태그에 추가
+
+                        // 현재 온도 추가
+                        tag += `<p>현재온도 : ${json.main.temp}</p>`; // 현재 온도를 출력 태그에 추가
+
+                        // 바람 세기 추가
+                        tag += `<p>바람세기 : ${json.wind.speed}</p>`; // 바람의 속도를 출력 태그에 추가
+
+                        // 바람 방향 추가
+                        tag += `<p>바람 방향 : <span class='deg'>↑</span> - ${json.wind.deg}</p>`; // 바람 방향을 시각적으로 표시할 화살표 및 각도를 추가
+
+                        // 결과를 HTML 요소에 삽입하여 화면에 출력
+                        document.querySelector('.result').innerHTML = tag; // 결과를 '.result' 클래스를 가진 요소에 삽입하여 화면에 출력
+
+                        // 바람 방향을 나타내는 화살표를 회전시켜서 바람 방향을 시각적으로 표시
+                        document.querySelector('.deg').style.transform = `rotateZ(${json.wind.deg}deg)`; // wind.deg 값에 따라 화살표 회전 (wind.deg는 바람의 각도)
+                        document.querySelector('.deg').style.display = `inline-block`; // 바람 방향 아이콘을 인라인 블록으로 표시하여 화면에 보이게 설정
+                    })
+                    .catch((error) => { // 데이터 요청에 실패했을 때 처리하는 부분
+                        console.log(error); // 에러 메시지를 콘솔에 출력
+                    });
+            }
+        }
+
     </script>
 </head>
 

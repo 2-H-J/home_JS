@@ -1,15 +1,84 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ajax</title>
+    <title>ajax☆☆☆</title>
     <script>
-     
+        window.onload = () => {
+            // 페이지가 모두 로드되었을 때 실행되는 함수
+            document.querySelector('button').onclick = () => {
+                // 버튼 클릭 시 실행되는 함수
+
+                // 1. OpenWeatherMap API URL 설정
+                // &units=Metric : 섭씨로 바꾸는 코드 추가 (기본은 화씨이기 때문에 units=Metric 파라미터 추가)
+                let url = 'https://api.openweathermap.org/data/2.5/weather?id=1835848&appid=Key_value&units=Metric';
+
+                // 2. HttpRequest 객체 생성
+                let request = new XMLHttpRequest(); // Ajax 요청을 담당할 XMLHttpRequest 객체 생성
+
+                // 3. URL 및 전송 방식 설정, 응답 데이터 형식 설정
+                request.open('GET', url); // GET 방식으로 URL 요청 준비
+                request.responseType = 'json'; // 응답 데이터를 JSON 형식으로 받겠다고 설정
+
+                // 4-1. 이벤트 처리 - 데이터 요청에 성공했을 때 실행되는 이벤트 핸들러
+                request.addEventListener('load', (result) => {
+                    // 서버로부터 데이터 수신이 성공적으로 완료되었을 때 실행
+                    console.log(result); // 응답 결과 전체를 콘솔에 출력
+                    console.log(result.currentTarget.response.main.temp); // 응답에서 현재 온도 출력
+
+                    // 응답 데이터를 변수에 저장
+                    let json = result.currentTarget.response;
+
+                    // 화면에 출력할 태그를 생성
+                    let tag = '';
+
+                    // 도시명 추가
+                    tag += `<p>${json.name}</p>`;
+
+                    // 현재 날씨 상태 추가 (맑음, 흐림 등)
+                    tag += `<p>현재날씨 : ${json.weather[0].main}</p>`;
+
+                    // 최고 온도 추가
+                    tag += `<p>최고온도 : ${json.main.temp_max}</p>`;
+
+                    // 최저 온도 추가
+                    tag += `<p>최저온도 : ${json.main.temp_min}</p>`;
+
+                    // 현재 온도 추가
+                    tag += `<p>현재온도 : ${json.main.temp}</p>`;
+
+                    // 바람 세기 추가
+                    tag += `<p>바람세기 : ${json.wind.speed}</p>`;
+
+                    // 바람 방향 추가
+                    tag += `<p>바람 방향 : <span class='deg'>↑</span> - ${json.wind.deg}</p>`;
+
+                    // 결과를 HTML 요소에 삽입하여 화면에 출력
+                    document.querySelector('.result').innerHTML = tag;
+                    // 바람 방향을 나타내는 화살표를 회전시켜서 바람 방향을 시각적으로 표시
+                    document.querySelector('.deg').style.transform = `rotateZ(${json.wind.deg}deg)`; // wind.deg 값에 따라 화살표 회전
+                    document.querySelector('.deg').style.display = `inline-block`; // 바람 방향 아이콘을 인라인 블록으로 표시
+                });
+
+                // 4-2. 이벤트 처리 - 데이터 요청에 실패했을 때 실행되는 이벤트 핸들러
+                request.addEventListener('error', (result) => {
+                    // 요청에 실패한 경우 실행
+                    console.log(result); // 에러 메시지를 콘솔에 출력
+                });
+
+                // 5. 데이터 요청 전송
+                request.send(); // 설정된 URL로 데이터 요청을 보냄
+            }
+        }
+
     </script>
 </head>
+
 <body>
     <button>날씨 정보 읽기</button>
     <div class="result"></div>
 </body>
+
 </html>

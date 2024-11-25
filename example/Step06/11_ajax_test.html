@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax_test</title>
+    <script>
+        window.onload = () => {
+            document.querySelector('button').onclick = () => {
+                let url = 'http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=7a32962f3dea0671a4c2cdf69cabaf98&movieNm=' 
+                + document.querySelector('#txt').value;
+
+                fetch(url).
+                    then(result => {
+                        return result.json();
+                    }).then(json => {
+                        console.log(json);
+                        let tag = json.movieListResult.movieList.reduce((acc, cur) => {
+                            return acc + `<h2>${cur.movieNm}</h2><p>개봉일 : ${cur.openDt} / 장르 : ${cur.repGenreNm} </p>`
+                        }, '');
+                        document.querySelector('.result').innerHTML = tag;
+                    }).catch(error => {
+                        console.log(error);
+                    })
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="txt">
+    <button>검색하기</button>
+    <div class="result"></div>
+</body>
+
+</html>
