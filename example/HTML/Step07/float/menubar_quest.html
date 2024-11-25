@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴바 - float</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            width: 1000px;
+            margin: 30px auto;
+            /* border: 1px solid red; */
+            font-size: 0px;
+        }
+
+        ul {
+            list-style-type: none;
+            display: inline-block;
+        }
+
+        li {
+            width: 200px;
+            float: left;
+        }
+
+        a {
+            display: inline-block;
+            width: 100%;
+            padding: 20px 0px;
+            background-color: #ece5e5;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid black;
+            text-decoration: none;
+            color: black;
+            box-sizing: border-box;
+        }
+
+        .first {
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        .last {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="" title="메인페이지로 이동" class="first">홈</a></li>
+            <li><a href="" title="회사 소개 페이지">회사소개</a></li>
+            <li><a href="" title="고객센터로 이동">고객센터</a></li>
+            <li><a href="" title="회사로 오는 길안내 페이지">오시는길</a></li>
+            <li><a href="" title="주문 페이지로 이동" class="last">주문하기</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
