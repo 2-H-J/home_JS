@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            console.log($('#ul1 li').length); // id값 ul1의 li갯수
+
+            // jQuery는 for_each가 아니고 each로 적용
+            $('#ul1 li').each(function (idx, obj) { // jQuery는 인덱스(idx)가 먼저나온후 객체(obj)값
+                console.log(`${idx} - ${$(obj).html()}`);
+            });
+
+            console.log('---------------------------------')
+
+            $('#ul1 li').each(function (idx) {
+                console.log(`${idx} - ${$(this).html()}`);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <ul id="ul1">
+        <li>메뉴1-1</li>
+        <li>메뉴1-2</li>
+        <li>메뉴1-3</li>
+        <li>메뉴1-4</li>
+        <li>메뉴1-5</li>
+    </ul>
+    <ul id="ul2">
+        <li>메뉴2-1</li>
+        <li>메뉴2-2</li>
+        <li>메뉴2-3</li>
+        <li>메뉴2-4</li>
+        <li>메뉴2-5</li>
+    </ul>
+</body>
+
+</html>

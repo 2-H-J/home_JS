@@ -6,7 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
-    
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            // 선택한 요소의 동생요소 선택
+            // 클래스가 txt 다음 위치에 있는 p 태그를 선택, 배경색을 노랑색으로 변경
+            // $('.txt + p').css('background-color', 'yellow'); // 기존 다음 태그 선택방법 : .txt + p
+            $('.txt').next().css('background-color', 'yellow'); //jQuery 다음 태그 선택방법 : .next(), 태그를 지정해야하는경우 : .next('태그명 & 아이디 & class')
+
+            // $('.txt + p + p').css('color', 'red'); // 다다음 태그 선택
+            $('.txt').next().next().css('color', 'red'); // 다다음 태그 선택
+
+            // ------------------------------------------------------------------
+
+            // 선택한 요소의 형요소 선택
+            $('.tit').prev().css({'background-color':'green'}); // 형요소
+            $('.tit').prev().prev().css({'background-color':'yellowgreen'}); // 형의 형요소
+
+            // 선택한 요소를 제외한 모든 형제들을 선택(siblings() : 위아래 모든 형제 전부 적용)
+            $('.tit').siblings('p').css('text-decoration','underline'); // siblings('p') : p태그로 된 자신 제외 모든 형제
+
+            // ------------------------------------------------------------------
+
+            // 모든 형,동생 요소 전부 선택 All
+            // $('.tit').nextAll().css('','')
+            // $('.tit').prevAll().css('','')
+        })
+    </script>
 </head>
 
 <body>

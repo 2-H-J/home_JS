@@ -6,7 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
-   
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            // 선택요소 제외 형제 요소 범위 지정 , 순서 중요(다음적용 순위 우선적용)
+            $('.txt3').prevUntil().css('color','red'); // 형요소 전체
+            $('.txt3').prevUntil('.title').css('color','yellowgreen'); // 형요소 .title까지 지정
+            $('.txt3').nextUntil().css('color','orange'); // 동생요소 전체
+            $('.txt3').nextUntil('.txt6').css('color','green'); // 동생요소 .txt6까지 지정
+        })
+   </script>
 </head>
 
 <body>

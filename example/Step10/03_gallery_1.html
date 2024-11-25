@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        .thumnail_container{
+            width: 500px;
+            text-align: center;
+            position: relative;
+            margin: 60px auto;
+        }
+        .main_img{
+            width: 400px;
+            height: 400px;
+        }
+        .thumnail_bar{
+            width: 400px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .thumnail{
+            width: 720px;
+            height: 80px;
+            font-size: 0px;
+        }
+        .thumnail img{
+            width: 80px;
+            height: 80px;
+        }
+        .left_arrow img, .right_arrow img{
+            width: 40px;
+            height: 40px;
+        }
+        .left_arrow{
+            left: 0px;
+            bottom: 10px;
+            position: absolute;
+        }
+        .right_arrow{
+            right: 0px;
+            bottom: 10px;
+            position: absolute;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var index = 0;
+
+            var thumnailWidth = $('.thumnail').width();
+            var thumnailBarWidth = $('.thumnail_bar').width();
+            $(".left_arrow").click(function(){
+                if(index==0) return;
+                index--;
+                var marginLeft = index * -80;
+                $('.thumnail').stop().animate({'margin-left':marginLeft+"px"},500);
+            });
+
+            $(".right_arrow").click(function(){
+                var marginLeft = index * -80;
+                console.log(marginLeft, thumnailWidth, thumnailBarWidth);
+                if(marginLeft + thumnailWidth == thumnailBarWidth) return;
+                index++;
+                marginLeft = index * -80;
+                $('.thumnail').stop().animate({'margin-left':marginLeft+"px"},500);
+            });
+            $('.thumnail img').click(function(){
+                $('.main_img').attr('src',$(this).attr('src'));
+            });
+        });
+    </script>
+</head>
+<body>
+     <div class="thumnail_container">
+        <img src="image/1.webp" class="main_img">
+        <div class="thumnail_bar">
+            <div class="thumnail">
+                <img src="image/1.webp">
+                <img src="image/2.webp">
+                <img src="image/3.webp">
+                <img src="image/4.webp">
+                <img src="image/5.webp">
+                <img src="image/6.webp">
+                <img src="image/7.webp">
+                <img src="image/8.webp">
+                <img src="image/9.webp">
+            </div>
+        </div>
+        <a class="left_arrow"><img src="image/left_arrow.png"></a>
+        <a class="right_arrow"><img src="image/right_arrow.png"></a>
+     </div>   
+</body>
+</html>

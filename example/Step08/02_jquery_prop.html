@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☆attribute☆jQuery☆property☆</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+            //attribute : HTML 문서에서 설정된 속성(정적인 속성) - default값
+            //property : HTML 문서에서 동적인 속성(웹페이지 실행 중에 사용 및 변경되는 값)
+            //property가 바뀌어도 attribute로 설정된 값은 유지가 됨
+            console.log($('#chk').attr('checked')); // undefined : html문서상 checked가 없어서
+            console.log($('#chk').prop('checked')); // false : 웹페이지내 새로 시작하면 체크가 안되어 있기때문
+
+            //    체크박스 클릭 이벤트
+            // $('#chk').click(function () {
+            //     console.log($('#chk').attr('checked'));
+            //     console.log($('#chk').prop('checked'));
+            // });
+            $('#chk').on('click', function () {
+                console.log($('#chk').attr('checked'));
+                console.log($('#chk').prop('checked'));
+                console.log('----------------------------------------')
+            });
+            
+            $('#txt').on('keyup', function () {
+                console.log('attr : ' + $(this).attr('value'));
+                console.log('val : ' + $(this).val());
+                console.log('prop : ' + $(this).prop('value'));
+                console.log('----------------------------------------')
+            });
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <input type="checkbox" name="chk" id="chk" value="test">
+    <label for="chk">체크 박스</label>
+    <hr>
+    <input type="text" value="attribute 값" id="txt">
+</body>
+
+</html>

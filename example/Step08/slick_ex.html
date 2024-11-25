@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- slick CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- slick JS -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(() => {
+            $('.img_slick').slick();
+        })
+    </script>
+    <style>
+        .img_slick div {
+            width: 1200px;
+            border: 1px solid black;
+        }
+
+        .img_slick div img {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="img_slick">
+        <div><img src="../Step06/img/main_1.webp" alt=""></div>
+        <div><img src="../Step06/img/main_2.webp" alt=""></div>
+        <div><img src="../Step06/img/main_3.webp" alt=""></div>
+        <div><img src="../Step06/img/main_4.webp" alt=""></div>
+    </div>
+</body>
+
+</html>

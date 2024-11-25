@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('#request').click(function(){
+                var id = '1835847';
+                var appid = '23815d818a51ef76062d119292b5691e';
+                $.ajax({
+                    url : `https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${appid}`,
+                    type : "get",
+                    dataType:'json',
+                    success:function(r){
+                        console.log(JSON.stringify(r));
+                        //도시명 - name
+                        $('#result').append(`<p>도시명 : ${r.name}</p>`);
+                        //현재 날씨 - weather[0].main
+                        $('#result').append(`<p>현재날씨 : ${r.weather[0].main}</p>`);
+                        //현재온도 - main.temp
+                        $('#result').append(`<p>현재온도 : ${(r.main.temp-273.15).toFixed(2)}℃</p>`);
+                        //최고온도 - main.temp_max
+                        $('#result').append(`<p>최고온도 : ${(r.main.temp_max-273.15).toFixed(2)}℃</p>`);
+                        //최저온도 - main.temp_min
+                        $('#result').append(`<p>최저온도 : ${(r.main.temp_min-273.15).toFixed(2)}℃</p>`);
+                        //바람세기 - wind.speed
+                        $('#result').append(`<p>바람세기 : ${r.wind.speed}m/sec</p>`);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="request">날씨 정보 요청</button>
+    <div id="result"></div>
+
+    <div id="openweathermap-widget-11"></div>
+<script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script><script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '1835848',appid: '23815d818a51ef76062d119292b5691e',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+<div id="openweathermap-widget-15"></div>
+<script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 15,cityid: '1835848',appid: '23815d818a51ef76062d119292b5691e',units: 'metric',containerid: 'openweathermap-widget-15',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+</body>
+</html>

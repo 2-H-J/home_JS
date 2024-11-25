@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        h1{
+            text-align: center;
+            margin-top: 40px;
+        }
+        .container{
+            width: 700px;
+            padding:40px;
+            margin: 0 auto;
+            border :1px solid #d1d1d1;
+        }
+        form > ul > li{
+            margin-top: 10px;
+        }
+        form > ul{
+            list-style-type: none;
+        }
+        form > ul > ul{
+            list-style-type: disc;
+            margin-top: 5px;
+            padding-left: 40px;
+            color:gray;
+        }
+        label{
+            font-weight: bold;
+        }
+        .border_bottom{
+            border-bottom:2px solid #c4c4c4;
+        }
+        input{
+            border:none;
+            outline: none;
+            height: 50px;
+            width: 80%;
+            font-size: 20px;
+        }
+        .sub_txt{
+            display: inline-block;
+            width: 20%;
+            text-align: right;
+            font-size: 20px;
+            padding-right:10px;
+            box-sizing: border-box;
+            font-weight: bold;
+            color: gray;
+        }
+        select{
+            width: 100px;
+            height: 50px;
+            box-sizing: border-box;
+            border: none;
+            font-size: 20px;
+            border-right: 1px solid #c4c4c4;
+            outline: none;
+        }
+        #tel{
+            padding-left: 10px;
+        }
+        .btn_send_no{
+            width: 230px;
+            height: 50px;
+            background-color: white;
+            border: 1px solid #c4c4c4;
+            border-radius: 25px;
+        }
+        .btn_send_no:hover{
+            background-color: #d4d4d4;
+        }
+        .btn_send_no:active{
+            background-color:white;
+        }
+        .btn_next{
+            width: 100%;
+            height: 50px;
+            background-color: #d4d4d4;
+            border-radius: 10px;
+            border: none;
+        }
+        .btn_next:hover{
+            background-color: #ffe606;
+        }
+        .true{
+            color:blue;
+            font-weight: bold;
+        }
+        .false{
+            color:red;
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        //자바스크립트로 했던 예제를 가져와서 jquery로 변경
+        //아이디 값이 정상인지 체크하는 함수
+        //1. 글자수 8~20글자 사이
+        //2. 숫자와 알파벳 혼합(숫자와 알파벳이 반드시 1개씩은 들어가야됨)
+        //규칙에 만족하면 true, 만족하지 않으면 false
+        function checkId(){
+
+            let reg = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/
+            console.log(reg.test($("#id").val()));
+
+            if(!reg.test($("#id").val())){
+                $('.id_result').html('아이디는 8글자 이상 20자 이하로 알파벳 숫자 조합으로 입력하세요');
+                $('.id_result').removeClass('true');
+                $('.id_result').addClass('false');
+                return false;
+            }
+            
+            $('.id_result').html('사용이 가능한 아이디 입니다.');
+            $('.id_result').removeClass('false');
+            $('.id_result').addClass('true');
+            return true;
+        }
+        /*
+            1. 두번 입력한 암호가 서로 일치하는지?
+            2. 암호도 8~32글자만 허용
+            3. 특수문자가 포함되어 있는지, 대소문자, 숫자 1글자씩 반드시 포함
+            하단에 메세지가 떠야됩니다.
+        */
+        function checkPassword(){
+            let reg = /(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*~])[A-Za-z\d!@#$%^&*~]{8,32}$/
+
+            if(!reg.test($('#pass').val())){
+                $('.pass_result').html('암호는 대소문자, 숫자, 특수문자 1글자씩 포함되어야합니다. 8~32글자 사이로 입력하세요');
+                $('.pass_result').addClass('false');
+                $('.pass_result').removeClass('true');
+                return false;
+            }
+            
+            if($('#pass').val() != $('#pass_chk').val()){
+                $('.pass_result').html('암호가 일치하지 않습니다.');
+                $('.pass_result').addClass('false');
+                $('.pass_result').removeClass('true');
+                return false;
+            }
+            $('.pass_result').html('암호가 일치합니다.');
+            $('.pass_result').removeClass('false');
+            $('.pass_result').addClass('true');
+
+            return true;
+        }
+        //닉네임 기능
+        //1. 닉네임은 20글자까지만 입력이 가능하게끔 처리
+        //2. 입력한 글자개수를 0/20 형식으로 sub_txt에 넣음
+        //3. 최소한 한글자는 입력 해야함
+        function checkNick(){
+            let reg = /^[.\S]{1,20}$/
+
+            $("#nick").val($("#nick").val().substr(0,20));
+                        
+            $('#nick').next().html($("#nick").val().length + '/20');
+            
+            if(!reg.test($("#nick").val())){
+                $('#nick').removeClass('true');
+                $('#nick').addClass('false');
+                return false;
+            }
+            $('#nick').removeClass('false');
+            $('#nick').addClass('true');
+            
+            return true;
+        }
+        //전화번호 체크하는 함수
+        function checkTel(){
+            let reg = /^01([0|1|6|7|8|9])-\d{3,4}-\d{4}$/
+            // let reg = /^01([0|1|6|7|8|9])-?\d{3,4}-?\d{4}$/
+            // let reg = /^01([0|1|6|7|8|9])\d{3,4}\d{4}$/
+
+            if(!reg.test($('#tel').val())){
+                $('#tel').removeClass('true');
+                $('#tel').addClass('false');
+                return false;
+            }
+            $('#tel').removeClass('false');
+            $('#tel').addClass('true');
+            
+            return true;
+        }
+
+        $(() => {
+            //아이디 입력시 checkId 함수 연결
+            $('#id').keyup(checkId);
+            $('#pass').keyup(checkPassword);
+            $('#pass_chk').keyup(checkPassword);
+            $('#nick').keyup(checkNick);
+            $('#tel').keyup(checkTel);
+
+            //폼 연결
+            $('#frm').submit((e) => {
+                if(!checkId() || !checkPassword() || !checkNick() || !checkTel()){
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>kakao</h1>
+    <div class="container">
+        <h2>카카오 계정 정보를 입력해 주세요.</h2>
+        <form action="" id="frm">
+            <ul>
+                <li><label for="id">카카오계정 이메일</label></li>
+                <li class="border_bottom">
+                    <input type="text" id="id" placeholder="아이디를 입력하세요"><span class="sub_txt">@kakao.com</span>
+                </li>
+                <li class="id_result"></li>
+                <ul>
+                    <li>입력한 카카오메일로 카카오 계정에 로그인 할 수 있습니다.</li>
+                    <li>한번 만든 카카오 메일은 변경할 수 없으니, 오타가 없도록 신중히 확인해 주세요.</li>
+                    <li>생성한 카카오메일로 카카오계정과 관련한 알림을 받아볼 수 있습니다.</li>
+                </ul>
+                <li><label for="pass">비밀번호</label></li>
+                <li class="border_bottom">
+                    <input type="password" id="pass" placeholder="비밀번호(8~32자리)">
+                </li>
+                <li class="border_bottom">
+                    <input type="password" id="pass_chk" placeholder="비밀번호 재입력">
+                </li>
+                <li class="pass_result"></li>
+                <li><label for="nick">닉네임</label></li>
+                <li class="border_bottom">
+                    <input type="text" id="nick" placeholder="닉네임을 입력하세요"><span class="sub_txt">0/20</span>
+                </li>
+                <li><label for="tel">전화번호</label></li>
+                <li class="border_bottom">
+                    <select id="gcode">
+                        <option value="82">+82</option>
+                        <option value="1">+1</option>
+                        <option value="84">+84</option>
+                        <option value="55">+55</option>
+                    </select><input type="text" id="tel" placeholder="전화번호 입력하세요 -는 빼고">
+                </li>
+                <li><button type="button" class="btn_send_no">인증번호 전송</button></li>
+                <li><button class="btn_next">다음</button></li>
+            </ul>
+
+        </form>
+    </div>
+</body>
+</html>

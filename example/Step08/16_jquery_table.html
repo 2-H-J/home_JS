@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 1200px;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #e9e9e9;
+        }
+
+        tbody>tr:hover {
+            background-color: cornflowerblue;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+        
+        });
+    </script>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="5">
+                    <input type="text" placeholder="이름 입력">
+                    <input type="text" placeholder="나이 입력">
+                    <select>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    <input type="text" placeholder="이메일 입력">
+                    <input type="text" placeholder="거주지역 입력">
+                    <button>입력</button>
+                </td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <th class="order">나이</th>
+                <th>성별</th>
+                <th>email</th>
+                <th>거주지역</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Gilles Kirkebye</td>
+                <td>56</td>
+                <td>Male</td>
+                <td>gkirkebye0@wikispaces.com</td>
+                <td>Tagta</td>
+            </tr>
+            <tr>
+                <td>Darcie Sibbering</td>
+                <td>56</td>
+                <td>Female</td>
+                <td>dsibbering1@amazon.de</td>
+                <td>Halayhayin</td>
+            </tr>
+            <tr>
+                <td>Heinrik Mackison</td>
+                <td>21</td>
+                <td>Male</td>
+                <td>hmackison2@ftc.gov</td>
+                <td>Leuwibuleud</td>
+            </tr>
+            <tr>
+                <td>Emory McIndoe</td>
+                <td>60</td>
+                <td>Male</td>
+                <td>emcindoe3@so-net.ne.jp</td>
+                <td>Troitsk</td>
+            </tr>
+            <tr>
+                <td>Vaclav Juschke</td>
+                <td>31</td>
+                <td>Male</td>
+                <td>vjuschke4@jiathis.com</td>
+                <td>Gavinhos de Baixo</td>
+            </tr>
+            <tr>
+                <td>Corrianne Grindlay</td>
+                <td>43</td>
+                <td>Female</td>
+                <td>cgrindlay5@ca.gov</td>
+                <td>Dupi</td>
+            </tr>
+            <tr>
+                <td>Ambrosio Chastney</td>
+                <td>48</td>
+                <td>Agender</td>
+                <td>achastney6@ft.com</td>
+                <td>Fengshan</td>
+            </tr>
+            <tr>
+                <td>Heda Rudham</td>
+                <td>39</td>
+                <td>Female</td>
+                <td>hrudham7@alexa.com</td>
+                <td>Cidahu</td>
+            </tr>
+            <tr>
+                <td>Ely Creech</td>
+                <td>17</td>
+                <td>Male</td>
+                <td>ecreech8@so-net.ne.jp</td>
+                <td>Corozal</td>
+            </tr>
+            <tr>
+                <td>Dorette Ormerod</td>
+                <td>34</td>
+                <td>Female</td>
+                <td>dormerod9@unicef.org</td>
+                <td>Bom Conselho</td>
+            </tr>
+            <tr>
+                <td>Sophie Losbie</td>
+                <td>42</td>
+                <td>Female</td>
+                <td>slosbiea@bbb.org</td>
+                <td>Al Jadīd</td>
+            </tr>
+            <tr>
+                <td>Manuel Batty</td>
+                <td>54</td>
+                <td>Male</td>
+                <td>mbattyb@studiopress.com</td>
+                <td>Lelkowo</td>
+            </tr>
+            <tr>
+                <td>Erminia Badwick</td>
+                <td>12</td>
+                <td>Female</td>
+                <td>ebadwickc@kickstarter.com</td>
+                <td>Shal’skiy</td>
+            </tr>
+            <tr>
+                <td>Ebonee Munt</td>
+                <td>50</td>
+                <td>Female</td>
+                <td>emuntd@who.int</td>
+                <td>Brčko</td>
+            </tr>
+            <tr>
+                <td>Nichole Mercik</td>
+                <td>11</td>
+                <td>Female</td>
+                <td>nmercike@360.cn</td>
+                <td>Wonodadi</td>
+            </tr>
+            <tr>
+                <td>Avery Fowlds</td>
+                <td>35</td>
+                <td>Male</td>
+                <td>afowldsf@sciencedaily.com</td>
+                <td>Huangdimiao</td>
+            </tr>
+            <tr>
+                <td>Fabian Domanski</td>
+                <td>49</td>
+                <td>Male</td>
+                <td>fdomanskig@statcounter.com</td>
+                <td>Houping</td>
+            </tr>
+            <tr>
+                <td>Terrill Brouncker</td>
+                <td>15</td>
+                <td>Male</td>
+                <td>tbrounckerh@clickbank.net</td>
+                <td>Melaka</td>
+            </tr>
+            <tr>
+                <td>Briney Huffadine</td>
+                <td>50</td>
+                <td>Female</td>
+                <td>bhuffadinei@time.com</td>
+                <td>Duas Igrejas</td>
+            </tr>
+            <tr>
+                <td>Cam Gyenes</td>
+                <td>49</td>
+                <td>Female</td>
+                <td>cgyenesj@jiathis.com</td>
+                <td>Priargunsk</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // 이벤트 적용 / 제거
+            // 이벤트 바인딩(특정 태그에 이벤트적용), 여러개 이벤트 지정할 수 있음
+            $('p').on('click mouseover', function () { // 여러가지 이벤트를 띄어쓰기로 적용 가능
+                alert($('#container').html());
+            });
+
+            // 이벤트 제거 ( button 누를시 mouseover 이벤트 제거)
+            $('button').on('click', function () {
+                $('p').off('mouseover');
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <p>클릭이벤트</p>
+    </div>
+    <button>mouseover 이벤트 삭제</button>
+</body>
+
+</html>

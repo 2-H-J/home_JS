@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#btn_translate").click(function(){
+                // var queryString = `target=${$('#target').val()}&source=${$('#source').val()}&txt=${$('#txt').val()}`;
+                var queryString = $('form').serialize();
+                console.log($('form').serialize());
+                $.ajax({
+                    url : "http://nam2626.dothome.co.kr/papago_2.php",
+                    data : queryString,
+                    type : 'get',
+                    dataType : 'json',
+                    success:function(r){
+                        $("#result").val(r.message.result.translatedText);
+                    }
+                })
+            });
+        });
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            width:800px;
+            position: relative;
+            margin:0 auto;
+            text-align: center;
+        }
+        article{
+            width: 400px;
+            padding: 10px 60px;
+            box-sizing: border-box;
+            float: left;
+        }
+        article:first-child{
+            border-right: 2px solid #c9c9c9;
+        }
+        select{
+            padding:15px 30px;
+            font-size: 18px;
+        }
+        textarea{
+            width: 100%;
+            height: 500px;
+            resize: none;
+            box-sizing: border-box;
+            font-size: 18px;
+            padding:10px;
+        }
+        h1,h2{
+            padding:20px 0px;
+            text-align: center;
+        }
+        #btn_translate{
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            border-radius: 25px;
+            font-weight: bold;
+            color: white;
+            position: absolute;
+            outline: none;
+            border: none;
+            left: calc(50% - 25px);
+            top : 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>파파고 번역 페이지</h1>
+    <section>
+        <form>
+            <article>
+                <select name="source" id="source">
+                    <option value="ko">한국어</option>
+                    <option value="en">영어</option>
+                    <option value="de">독일어</option>
+                    <option value="ja">일본어</option>
+                    <option value="zh-CN">중국어</option>
+                </select>
+                <h2>번역할 내용</h2>
+                <textarea name="txt" id="txt"></textarea>
+            </article>
+            <article>
+                <select name="target" id="target">
+                    <option value="ko">한국어</option>
+                    <option value="en">영어</option>
+                    <option value="de">독일어</option>
+                    <option value="ja">일본어</option>
+                    <option value="zh-CN">중국어</option>
+                </select>
+                <h2>번역된 내용</h2>
+                <textarea id="result" readonly></textarea>
+                <button id='btn_translate' type="button">>></button>
+            </article>
+        </form>
+    </section>
+</body>
+</html>

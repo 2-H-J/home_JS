@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
-   
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <script>
+        // jQuery 이벤트 처리
+        $(function () {
+            // 로그인 버튼 선택
+            $('button').click(function (e) {
+                console.log(e.target);
+
+                console.log($('#id').val()); // $('#id').val() : value값 확인
+
+                // 아이디, 암호에 입력된 값을 result 영역에 출력
+                // document.querySelector('#result').innerHTML = `${$('#id').val()} / ${$('#password').val()}` // 기존 방법
+                $('#result').html(`id : ${$('#id').val()} / password : ${$('#password').val()}`);
+            });
+
+            // id선택 
+            $('#id').on('keyup', function (e) {
+                console.log(e.target.value);
+            });
+        })
+    </script>
 </head>
+
 <body>
     <input type="text" id="id"> <input type="password" id="password">
     <button>로그인</button>
     <hr>
-    <div id="result"></div> 
+    <div id="result"></div>
 </body>
+
 </html>

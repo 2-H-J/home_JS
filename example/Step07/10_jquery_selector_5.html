@@ -5,7 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
-   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            //선택된 전체 li들중 첫번째 요소를 선택 - 글자색 빨강
+            $('ul li').first().css('color','red');
+            //선택된 전체 li들중 마지막 요소를 선택 - 글자색 파랑
+            $('ul li').last().css('color','blue');
+            //선택된 전체 li들중 각 무리별 요소를 선택 - 밑줄
+            $('ul li:first-of-type').css('text-decoration', 'underline');
+            $('ul li:last-of-type').css('text-decoration', 'underline');
+            //인덱스 번호 기준으로 짝수번째, 홀수번째 선택, 무리별 선택 X - 기울임꼴
+            $('li:odd').css('font-style', 'italic');
+            $('li:even').css('font-weight', 'bold');
+        })
+    </script>
 </head>
 <body>
     <ul>

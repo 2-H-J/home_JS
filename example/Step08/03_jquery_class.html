@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <style>
+        .bold {
+            font-weight: bold;
+        }
+
+        .size {
+            font-size: 20px;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(() => {
+            console.log($('p').attr('class'));
+            // 클래스 적용 (p태그에 bold클래스 추가 적용)
+            $('p').addClass('bold'); // p태그에 bold 클래스 적용
+            $('p').addClass('bold'); // css 중복 이미 적용되어 있으면 중복은 안됨 결국 마지막꺼가 적용됨 
+            console.log($('p').attr('class'));
+
+            // underline클래스 제거
+            $('p').removeClass('underline');
+            console.log($('p').prop('class'));
+
+            // 있으면 제거, 없으면 추가 하는 토글 클래스
+            $('p').toggleClass('underline'); // underline 삭제해서 다시 추가
+            console.log($('p').prop('class'));
+            $('p').toggleClass('underline'); // underline 다시추가한거 다시 삭제
+            console.log($('p').prop('class'));
+
+            // 해당 클래스가 있는지 없는지 확인 (true / false)
+            console.log($('p').hasClass('bold'));
+            console.log($('p').hasClass('underline'));
+        });
+
+    </script>
+</head>
+
+<body>
+    <p class="size underline">내용</p>
+</body>
+
+</html>

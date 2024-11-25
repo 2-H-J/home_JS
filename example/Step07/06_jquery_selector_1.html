@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery</title>
-    
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery_자식 선택 방법</title>
+	<script src="lib/jquery-3.7.1.min.js"></script>
+	<script>
+		$(() => {
+			// id가 wrap인 자식인 h1 제목태그 선택, 배경색 노랑, 글자는 밑줄
+			$('#wrap > h1').css({ 'background-color': 'yellow', 'text-decoration': 'underline' });
+
+			// 아이디가 wrap 안에 있는 자식들중 p태그만 선택, 기울임꼴 적용
+			$('#wrap').children('p').css('font-style','italic');// children함수 적용(자식선택) #wrap안 p태그에 적용(children('p')중 'p'빼면 모든 자식적용)
+		});
+	</script>
+
 </head>
+
 <body>
-    <h1>자식 요소 선택자</h1>
-    <div id="wrap">
+	<h1>자식 요소 선택자</h1>
+	<div id="wrap">
 		<h1>자식 요소 선택자</h1>
 		<p>내용1</p>
 		<section>
@@ -18,4 +30,5 @@
 		</section>
 	</div>
 </body>
+
 </html>

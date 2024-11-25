@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
-   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // 속성 선택자
+            // 해당 속성이 있는 경우
+            $('a[download]').css({ 'background-color': 'coral' }); // a[download] : a태그의 [download]다운로드 속성이 있는거 선택
+
+            // 일치하는 속성값이 있는 경우
+            $('a[target=_blank]').css('color', 'yellowgreen'); // a태그의 속성과 그 속성의 값까지 일치하는거 선택
+
+            // 시작하는 속성값
+            // $('a[href^="http://"]').css('text-decoration','none'); // [href^=http] : 속성값중 http로 시작하는 속성값 선택 (:// 특수문자는 작은따옴표로 하면 적용이 안됨)
+            $('a[href^=http]').css('text-decoration','none'); // [href^=http] : 속성값중 http로 시작하는 속성값 선택
+
+            // 끝나는 속성값 ( ex_ 파일명(img,한글,엑셀등등)에 따라 원하는 속성값 선택 css 적용 )☆☆☆☆☆☆
+            $('a[href$=".webp"]').css('color','red'); // webp로 끝나는 단어 속성 값 선택
+            // $('a[href$=webp]').css('color','red'); // webp로 끝나는 단어 속성 값 선택
+
+            // 포함하는 속성값
+            $('a[href*=lib]').css({'border':'1px solid black'}); // [href*=lib] : 속성값중 lib가 포함된 모든 a태그 선택
+        });
+    </script>
+
 </head>
+
 <body>
     <a href="http://www.google.co.kr" target="_blank">구글로 이동</a><br>
     <a href="http://www.google.co.kr" target="_self">구글로 이동</a><br>
-    <a href="/resource/img/grill1.jpg" download>첨부파일 다운로드</a><br>
-    <a href="/resource/lib/jquery-3.6.0.min.js" download>제이쿼리 다운로드</a>
+    <a href="../Step06/img/6.webp" download>첨부파일 다운로드</a><br> <!-- download : 파일 다운 속성-->
+    <a href="lib/jquery-3.7.1.min.js" download>제이쿼리 다운로드</a>
 </body>
+
 </html>

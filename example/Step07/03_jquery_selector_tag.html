@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
-   
+    <script src="lib/jquery-3.7.1.min.js"></script> <!-- jQuery 셋팅 연결 -->
+    <script>
+        $(() => {
+            // p태그 '전부' 선택, 배경색을 파랑색, 글자색 빨강색
+            // 기존js 방법
+            // document.querySelectorAll('p').forEach(obj =>{
+            //     obj.style.backgroundColor = 'blue';
+            //     obj.style.color = 'red';
+            // }) 
+
+            // jQuery에서 태그 선택하는 방법 : $('선택자')
+            // 1.
+            // $('p').css('background-color', 'gray').css('color', 'blue');
+
+            // 2.
+            $('p').css({'background-color':'gray','color':'blue'});
+
+            // h2선택 글자색 빨강색으로 변경
+            $('h2').css('color','red');
+
+            // div안 자식 p
+            $('div > p').css({'color':'black'});
+
+            console.log('h2의 color css값 : ',$('h2').css('color'));//콘솔로 css속성값 확인
+        })
+    </script>
 </head>
+
 <body>
     <h2>제목</h2>
     <p>내용</p>
@@ -19,4 +46,5 @@
     <p>내용</p>
     <p>내용</p>
 </body>
+
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 500px;
+            height: 300px;
+            margin: 20px auto;
+            position: relative;
+            background-color: darkgray;
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            left: 100px;
+            top: 50px;
+            border: 1px solid black;
+            position: absolute;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // 문서가 준비되면 이 함수가 실행됩니다.
+        // jQuery의 $(function() {...}) 구문은 HTML 문서가 모두 로드되고 나면 지정된 함수가 호출되도록 합니다.
+        $(function () {
+
+            // 1. offset()을 사용하여 '.box' 요소의 절대적인 위치를 계산하고, 첫 번째 <p> 요소의 <span>에 표시
+            // - $('.box').offset().top: 페이지 최상단으로부터 '.box' 요소까지의 수직 거리(px)
+            // - $('.box').offset().left: 페이지 왼쪽으로부터 '.box' 요소까지의 수평 거리(px)
+            // - $('p:first span')은 문서에서 첫 번째 <p> 요소 내의 <span> 요소를 선택합니다.
+            $('p:first span').text($('.box').offset().top + " " + $('.box').offset().left);
+
+            // 2. position()을 사용하여 '.box' 요소의 부모 요소에 대한 상대적인 위치를 계산하고, 마지막 <p> 요소의 <span>에 표시
+            // - $('.box').position().top: 가장 가까운 offset 부모로부터 '.box' 요소까지의 수직 거리(px)
+            // - $('.box').position().left: 가장 가까운 offset 부모로부터 '.box' 요소까지의 수평 거리(px)
+            // - $('p:last span')은 문서에서 마지막 <p> 요소 내의 <span> 요소를 선택합니다.
+            $('p:last span').text($('.box').position().top + " " + $('.box').position().left);
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="container">
+        <div class="box"></div>
+    </div>
+    <div>
+        <p>box의 절대좌표 값 top : <span></span></p>
+        <p>box의 상대좌표 값 top : <span></span></p>
+    </div>
+</body>
+
+</html>

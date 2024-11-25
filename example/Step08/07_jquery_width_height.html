@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #d1 {
+            width: 100px;
+            height: 100px;
+            padding: 30px;
+            border: 10px solid black;
+            margin: 30px;
+        }
+
+        #d2 {
+            width: 100px;
+            height: 100px;
+            padding: 30px;
+            border: 10px solid black;
+            margin: 30px;
+            box-sizing: border-box;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // #d1 요소의 너비와 높이를 출력
+            // width()와 height()는 요소의 내용 영역(Content) 크기만을 반환합니다.
+            console.log($("#d1").width(), $("#d1").height());
+            // innerWidth()와 innerHeight()는 요소의 내용 영역(Content) + 패딩(Padding)을 포함한 크기를 반환합니다.
+            console.log($("#d1").innerWidth(), $("#d1").innerHeight());
+            // outerWidth()와 outerHeight()는 요소의 내용 영역(Content) + 패딩(Padding) + 테두리(Border)를 포함한 크기를 반환합니다.
+            console.log($("#d1").outerWidth(), $("#d1").outerHeight());
+
+            // #d2 요소의 너비와 높이를 출력 (내용 영역 기준)
+            console.log($("#d2").width(), $("#d2").height());
+            // #d2 요소의 너비와 높이를 출력 (내용 + 패딩 포함)
+            console.log($("#d2").innerWidth(), $("#d2").innerHeight());
+            // #d2 요소의 너비와 높이를 출력 (내용 + 패딩 + 테두리 포함)
+            console.log($("#d2").outerWidth(), $("#d2").outerHeight());
+
+            // #d2 요소의 너비를 설정 (다른 메서드들을 사용하여 각기 다르게 설정)
+            $("#d2").width(100); // #d2의 내용 영역(Content)을 100px로 설정
+            $("#d2").innerWidth(100); // #d2의 내용 영역 + 패딩을 합쳐 100px로 설정 (실제로는 패딩만큼 내용 영역이 줄어듦)
+            $("#d2").outerWidth(100); // #d2의 내용 영역 + 패딩 + 테두리를 합쳐 100px로 설정 (실제로는 테두리와 패딩만큼 내용 영역이 줄어듦)
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="d1"></div>
+    <div id="d2"></div>
+</body>
+
+</html>

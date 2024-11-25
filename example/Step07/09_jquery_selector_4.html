@@ -6,7 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
-    
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <script>
+        $(() => {
+            // 부모요소 선택방법
+            // document.querySelector('.txt1').parentNode.style.border = '1px solid black'; // 기존 선택방법 : parentNode
+            $('.txt1').parent().css({ 'border': '1px solid black' }); // parent()
+
+            // 부모의 부모요소 선택
+            $('.txt1').parent().parent().css('border', '1px solid red');
+
+            // ------------------------------------------------------------------------------------------------------
+            
+            // 모든 부모요소 선택
+            $('.txt2').parents().css({ 'border': '1px dashed blue' }); // 자신을 감싸고 있는 모든 부모 태그선택 body도 포함
+            $('.txt2').parents('div').css({ 'border': '3px solid green' }); // 감싸고 있는 부모중 원하는 태그만 선택
+        });
+    </script>
+
     <style>
         section,
         div {

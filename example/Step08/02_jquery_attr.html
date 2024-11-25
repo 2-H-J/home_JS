@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            //attr 함수는 속성값을 읽거나 추가 수정, 사용하는 함수
+            //attr('속성명') --> 해당 속성의 값을 읽어옴
+            console.log($('a').attr('href'));
+
+            //a태그에 target 속성 추가, _blank로 설정
+            $('a').attr('target', '_blank');
+
+            //input 태그에 속성값으로 id = txt, placeholder=텍스트 입력
+            $('input').attr({
+                'id': 'txt',
+                'placeholder': '텍스트 입력'
+            });
+
+            //속성명만 들어가는 경우
+            $('input').attr('readonly', 'true');
+
+            //속성 제거
+            $('input').removeAttr('name');
+        });
+    </script>
+</head>
+
+<body>
+    <a href="https://www.google.co.kr">구글로 이동</a><br>
+    <form action="">
+        <input type="text" name="txt"><button>전송</button>
+    </form>
+</body>
+
+</html>
