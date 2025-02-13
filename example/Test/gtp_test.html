@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>제품문의 페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'NanumGothic';
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 570px;
+            text-align: center;
+            margin: 100px auto;
+        }
+
+        h1 {
+            color: #131F85;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        p {
+            color: #3541AC;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .txt {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #131F85;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+
+
+        textarea {
+            height: 300px;
+            resize: none;
+        }
+
+        .phone {
+            display: flex;
+        }
+
+        #phone1 {
+            width: 80px;
+            text-align: center;
+        }
+
+        #phone2,
+        #phone3 {
+            width: 150px;
+
+            text-align: center;
+        }
+
+        .chk_bar {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+
+        }
+
+        .chk_bar label {
+            display: flex;
+            align-items: center;
+            color: #131F85;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        input[type='checkbox'] {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        .submit,
+        .reset {
+            background-color: #131F85;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 32px;
+            height: 70px;
+        }
+
+        .submit {
+            margin: 15px 0px;
+        }
+
+
+        .submit:hover,
+        .reset:hover {
+            background-color: #0f1a77;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #E9E9E9;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            height: 70px;
+        }
+
+        span {
+            font-size: 64px;
+            font-weight: bold;
+            margin: 0px 5px;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            function allowNumbersOnly(event) {
+                const charCode = event.which ? event.which : event.keyCode;
+
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    event.preventDefault();
+                }
+            }
+
+            document.getElementById('phone1').addEventListener('keypress', allowNumbersOnly);
+            document.getElementById('phone2').addEventListener('keypress', allowNumbersOnly);
+            document.getElementById('phone3').addEventListener('keypress', allowNumbersOnly);
+
+            document.getElementById('phone1').addEventListener('input', function () {
+                if (this.value.length > 3) {
+                    this.value = this.value.slice(0, 3);
+                }
+            });
+
+            document.getElementById('phone2').addEventListener('input', function () {
+                if (this.value.length > 4) {
+                    this.value = this.value.slice(0, 4);
+                }
+            });
+
+            document.getElementById('phone3').addEventListener('input', function () {
+                if (this.value.length > 4) {
+                    this.value = this.value.slice(0, 4);
+                }
+            });
+
+            function validateForm() {
+                const title = document.getElementById('title').value.trim();
+                const phone1 = document.getElementById('phone1').value.trim();
+                const phone2 = document.getElementById('phone2').value.trim();
+                const phone3 = document.getElementById('phone3').value.trim();
+                const content = document.getElementById('content').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const agree = document.getElementById('agree').checked;
+
+                if (!title || !phone1 || !phone2 || !phone3 || !content || !email) {
+                    alert('제목, 전화번호, 문의 내용, 이메일을 모두 입력해 주세요.');
+                    return;
+                }
+
+                if (phone1.length !== 3 || phone2.length !== 4 || phone3.length !== 4) {
+                    alert('올바른 전화번호를 입력해 주세요.');
+                    return;
+                }
+
+                if (!agree) {
+                    alert('개인정보 제공에 동의해야 내용 접수가 가능합니다.');
+                    return;
+                }
+
+                alert('해당 내용을 접수하였습니다.');
+            }
+
+            document.querySelector('.submit').addEventListener('click', validateForm);
+        };
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>제품문의</h1>
+        <p>원하시는 제품이나, 관련 내용을 원하시는 부분을 작성해 주세요</p>
+
+        <form id="form" action="#">
+            <div class="txt">
+                <input type="text" id="title" name="title" placeholder="제목">
+            </div>
+
+            <div class="txt">
+                <div class="phone">
+                    <input type="text" id="phone1" name="phone1" maxlength="3" placeholder="010">
+                    <span>-</span>
+                    <input type="text" id="phone2" name="phone2" maxlength="4" placeholder="0000">
+                    <span>-</span>
+                    <input type="text" id="phone3" name="phone3" maxlength="4" placeholder="0000">
+                </div>
+            </div>
+
+            <div class="txt">
+                <textarea id="content" name="content" placeholder="문의 내용 입력"></textarea>
+            </div>
+
+            <div class="txt">
+                <input type="email" id="email" name="email" placeholder="이메일 입력">
+            </div>
+
+            <div class="chk_bar">
+                <input type="checkbox" id="agree" name="agree">
+                <label for="agree">개인정보 제공에 대해 동의합니다.</label>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="submit">문의하기</button>
+                <button type="reset" class="reset">초기화</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

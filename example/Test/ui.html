@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고객의소리</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'NanumGothic';
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #BC0000;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        p {
+            color: #E94A4A;
+            font-size: 20px;
+        }
+
+        .container {
+            width: 750px;
+            margin: 100px auto;
+            display: flex;
+            flex-flow: column nowrap;
+            text-align: center;
+
+        }
+
+        .txt {
+            width: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            margin: 20px 0px;
+        }
+
+        .txt>input {
+            height: 100px;
+            border: 1px solid #A00000;
+            font-size: 24px;
+        }
+
+        .txt>textarea {
+            resize: none;
+            height: 300px;
+            margin: 20px 0px;
+            border: 1px solid #A00000;
+            font-size: 24px;
+        }
+
+        .chk_bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .chk_bar label {
+            display: flex;
+            align-items: center;
+            color: #E94A4A;
+            font-size: 24px;
+        }
+
+        input[type='checkbox'] {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        button {
+            width: 100%;
+            height: 100px;
+            margin-top: 20px;
+            background-color: #A00000;
+            color: white;
+            border-radius: 10px;
+            font-size: 32px;
+            border: none;
+        }
+
+        input::placeholder {
+            color: #AF7878;
+            padding-left: 10px;
+        }
+
+        textarea::placeholder {
+            color: #AF7878;
+            padding: 10px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            /* 포커스 시 기본 테두리 스타일 제거 */
+        }
+
+        textarea:focus{
+            outline: none;
+        }
+        button:hover{
+            background-color: #800101;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>고객의 소리</h1>
+        <p>고객님의 목소리 의견 하나하나 듣겠습니다.</p>
+        <p>개인정보 이용에 동의를 하셔야 이용하실수 있습니다.</p>
+        <div class="txt">
+            <input type="text" placeholder="제목을 입력하세요">
+            <textarea name="" id="" placeholder="내용을 입력하세요"></textarea>
+            <input type="text" placeholder="연락처나 이메일 입력해 주세요">
+        </div>
+        <div class="chk_bar">
+            <label for="">
+                <input type="checkbox">개인정보 수집에 동의합니다.
+            </label>
+        </div>
+        <div class="but">
+            <button>제출하기</button>
+        </div>
+    </div>
+</body>
+
+</html>

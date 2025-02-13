@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>제품문의 페이지</title>
+    <style>
+        /* 모든 요소 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'NanumGothic';
+            box-sizing: border-box;
+        }
+
+        /* 페이지 중앙에 위치한 컨테이너 스타일 설정 */
+        .container {
+            width: 570px;
+            text-align: center;
+            margin: 100px auto;
+        }
+
+        /* 제목 스타일 */
+        h1 {
+            color: #131F85;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        /* 설명문 스타일 */
+        p {
+            color: #3541AC;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* 텍스트 필드 박스 스타일 설정 */
+        .txt {
+            margin-bottom: 15px;
+        }
+
+        /* 레이블 스타일 설정 */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* 입력 필드와 텍스트 영역 스타일 */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #131F85;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+
+        /* 텍스트 영역 크기 고정 */
+        textarea {
+            height: 300px;
+            resize: none;
+        }
+
+        /* 전화번호 입력 필드 스타일 */
+        .phone {
+            display: flex;
+        }
+
+        /* 전화번호 첫 번째 입력 필드 */
+        #phone1 {
+            width: 80px;
+            text-align: center;
+        }
+
+        /* 전화번호 두 번째, 세 번째 입력 필드 */
+        #phone2,
+        #phone3 {
+            width: 150px;
+            text-align: center;
+        }
+
+        /* 체크박스와 동의 문구 스타일 */
+        .chk_bar {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* 체크박스 라벨 스타일 설정 */
+        .chk_bar label {
+            display: flex;
+            align-items: center;
+            color: #131F85;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        /* 체크박스 스타일 설정 */
+        input[type='checkbox'] {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        /* 버튼 영역 스타일 설정 */
+        .buttons {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        /* 제출 버튼과 초기화 버튼 스타일 */
+        .submit,
+        .reset {
+            background-color: #131F85;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 32px;
+            height: 70px;
+        }
+
+        /* 제출 버튼 여백 설정 */
+        .submit {
+            margin: 15px 0px;
+        }
+
+        /* 버튼 호버 효과 */
+        .submit:hover,
+        .reset:hover {
+            background-color: #0f1a77;
+        }
+
+        /* 입력 필드와 텍스트 영역의 placeholder 스타일 */
+        input::placeholder,
+        textarea::placeholder {
+            color: #E9E9E9;
+        }
+
+        /* 입력 필드 포커스 효과 */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+        }
+
+        /* 입력 필드 높이 설정 */
+        input[type="text"],
+        input[type="email"] {
+            height: 70px;
+        }
+
+        /* 구분자 스타일 설정 */
+        span {
+            font-size: 64px;
+            font-weight: bold;
+            margin: 0px 5px;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            // 전화번호 입력란에 입력 제한을 설정합니다.
+            document.getElementById('phone1').addEventListener('input', function () {
+                if (this.value.length > 3) {
+                    this.value = this.value.slice(0, 3); // 최대 3자리까지만 입력 가능
+                }
+            });
+
+            document.getElementById('phone2').addEventListener('input', function () {
+                if (this.value.length > 4) {
+                    this.value = this.value.slice(0, 4); // 최대 4자리까지만 입력 가능
+                }
+            });
+
+            document.getElementById('phone3').addEventListener('input', function () {
+                if (this.value.length > 4) {
+                    this.value = this.value.slice(0, 4); // 최대 4자리까지만 입력 가능
+                }
+            });
+
+            // 폼 유효성 검사 함수
+            function validateForm() {
+                const title = document.getElementById('title').value.trim();
+                const phone1 = document.getElementById('phone1').value.trim();
+                const phone2 = document.getElementById('phone2').value.trim();
+                const phone3 = document.getElementById('phone3').value.trim();
+                const content = document.getElementById('content').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const agree = document.getElementById('agree').checked;
+
+                // 필수 입력 항목이 비어 있는지 확인합니다.
+                if (!title || !phone1 || !phone2 || !phone3 || !content || !email) {
+                    alert('제목, 전화번호, 문의 내용, 이메일을 모두 입력해 주세요.');
+                    return;
+                }
+
+                // 전화번호 형식이 올바른지 확인합니다.
+                if (phone1.length !== 3 || phone2.length !== 4 || phone3.length !== 4) {
+                    alert('올바른 전화번호를 입력해 주세요.');
+                    return;
+                }
+
+                // 개인정보 제공에 동의했는지 확인합니다.
+                if (!agree) {
+                    alert('개인정보 제공에 동의해야 내용 접수가 가능합니다.');
+                    return;
+                }
+
+                // 모든 조건이 충족되면 제출 확인 메시지를 표시합니다.
+                alert('해당 내용을 접수하였습니다.');
+            }
+
+            // 제출 버튼 클릭 시 폼 유효성 검사를 실행합니다.
+            document.querySelector('.submit').addEventListener('click', validateForm);
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>제품문의</h1>
+        <p>원하시는 제품이나, 관련 내용을 원하시는 부분을 작성해 주세요</p>
+
+        <form id="form" action="#">
+            <div class="txt">
+                <input type="text" id="title" name="title" placeholder="제목">
+            </div>
+
+            <div class="txt">
+                <div class="phone">
+                    <input type="text" id="phone1" name="phone1" maxlength="3" placeholder="010">
+                    <span>-</span>
+                    <input type="text" id="phone2" name="phone2" maxlength="4" placeholder="0000">
+                    <span>-</span>
+                    <input type="text" id="phone3" name="phone3" maxlength="4" placeholder="0000">
+                </div>
+            </div>
+
+            <div class="txt">
+                <textarea id="content" name="content" placeholder="문의 내용 입력"></textarea>
+            </div>
+
+            <div class="txt">
+                <input type="email" id="email" name="email" placeholder="이메일 입력">
+            </div>
+
+            <div class="chk_bar">
+                <input type="checkbox" id="agree" name="agree">
+                <label for="agree">개인정보 제공에 대해 동의합니다.</label>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="submit">문의하기</button>
+                <button type="reset" class="reset">초기화</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
